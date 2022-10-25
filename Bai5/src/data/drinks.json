@@ -1,0 +1,49 @@
+[
+    {
+        "id": 0,
+        "name": "Bánh hành chiên ia ra quan",
+        "image": "https://cdn.statically.io/img/kokotaru.com/wp-content/uploads/20210706_152032-2048x1152.jpg",
+        "price": 40000,
+        "time":"15 Phút",
+        "difficult":"5/10",
+        "description": "Bánh chiên, vỏ giòn, ruột mềm, thơm lừng mùi hành lá, bùi bùi mùi bột thơm và vừng rang.",
+        "ingredient":"1 quả trứng \n 1 tsp men khô \n 1/4 tsp baking soda\n1/4 tsp baking powder\n1 tsp muối",
+        "guide":"Cho tất cả các nguyên liệu, trừ hành lá và vừng, vào chung một tô. Dùng đũa hoặc thìa quấy đều cho các nguyên liệu hòa quện. Hỗn hợp sẽ lỏng và dính.\nDùng khăn hoặc nylon thực phẩm đậy kín miệng tô, để bột nghỉ trong 1 giờ.\nSau khi bột nghỉ, lấy ra trộn hành và vừng vào.Đặt nồi dầu lên bếp, bật bếp đun đến khi dầu nóng già. Trong lúc đó, chia bột thành nhiều phần (như hình) để chuẩn bị rán. Lưu ý bôi dầu ở khay để chống dính. Bạn cũng có thể xoa dầu vào tay để lấy chia bột được dễ dàng mà không dính tay. Khi chiên bánh sẽ phồng lên khá nhiều nên mỗi phần bột không cần quá nhiều.\nKhi dầu nóng thì cho bột vào chiên ngập dầu, khi bánh phồng lên và chín vàng nâu đều là được. Gắp ra để cho ráo dầu.\nBánh nên ăn khi vừa chiên xong, còn nóng ấm. Khi bánh nguội có thể làm nóng lại bằng lò vi sóng, lớp vỏ sẽ không còn giòn nhưng vị bánh vẫn rất ngon."
+    },
+    {
+        "id": 1,
+        "name": "Bánh hành chiên",
+        "image": "https://cdn.statically.io/img/kokotaru.com/wp-content/uploads/20210706_152032-2048x1152.jpg",
+        "price": 40000,
+        "time":"15 Phút",
+        "difficult":"5/10",
+        "description": "Bánh chiên, vỏ giòn, ruột mềm, thơm lừng mùi hành lá, bùi bùi mùi bột thơm và vừng rang."
+    },
+    {
+        "id": 2,
+        "name": "Bánh hành chiên",
+        "image": "https://cdn.statically.io/img/kokotaru.com/wp-content/uploads/20210706_152032-2048x1152.jpg",
+        "price": 40000,
+        "time":"15 Phút",
+        "difficult":"5/10",
+        "description": "Bánh chiên, vỏ giòn, ruột mềm, thơm lừng mùi hành lá, bùi bùi mùi bột thơm và vừng rang."
+    },
+    {
+        "id": 3,
+        "name": "Bánh hành chiên",
+        "image": "https://cdn.statically.io/img/kokotaru.com/wp-content/uploads/20210706_152032-2048x1152.jpg",
+        "price": 40000,
+        "time":"15 Phút",
+        "difficult":"5/10",
+        "description": "Bánh chiên, vỏ giòn, ruột mềm, thơm lừng mùi hành lá, bùi bùi mùi bột thơm và vừng rang."
+    },
+    {
+        "id": 4,
+        "name": "Bánh hành chiên",
+        "image": "https://cdn.statically.io/img/kokotaru.com/wp-content/uploads/20210706_152032-2048x1152.jpg",
+        "price": 40000,
+        "time":"15 Phút",
+        "difficult":"5/10",
+        "description": "Bánh chiên, vỏ giòn, ruột mềm, thơm lừng mùi hành lá, bùi bùi mùi bột thơm và vừng rang."
+    }
+]
