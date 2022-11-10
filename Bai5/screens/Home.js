@@ -113,6 +113,7 @@ function HomeScreen({ navigation }) {
   </ImageBackground>
 </Swiper></View>
       <View style={styles.sectionContainer}>
+        
         <Text style={styles.title}>Các Món Theo Lượt Yêu Thích</Text>
         <FlatList
           data={data1}

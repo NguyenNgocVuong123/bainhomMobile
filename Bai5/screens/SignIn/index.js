@@ -61,7 +61,12 @@ export default function SignInScreen({ navigation }) {
       `http://192.168.0.101:3000/user/${Email.trim()}`
     );
     if (res.data.password == password.trim()) {
-      navigation.navigate("HomeTab");
+      navigation.navigate("HomeTab",{screen: 'Acc',
+      params: { Name: res.data.Name,
+        Email: res.data.Email,
+        Phone: res.data.Phone, }
+        
+      });
     } else {
       alert(`Email hoặc mật khẩu không chính xác!`);
     }
