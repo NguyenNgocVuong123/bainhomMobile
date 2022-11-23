@@ -15,20 +15,28 @@ import { Ionicons } from "@expo/vector-icons";
 import FavItem from "../../src/components/CartItem";
 
 export default function favScreen() {
+  const url = "http://192.168.0.101:3000";
   const isFocused = useIsFocused();
+  const [user, setuser] = useState('');
   const [favList, setFavList] = useState([]);
-  const getFavData = async () => {
-    let favData = await AsyncStorage.getItem("favData");
-    if (favData) {
-      favData = JSON.parse(favData);
-    } else {
-      favData = [];
-    }
-    setFavList(favData);
-  };
-  useEffect(() => {
-    getFavData();
-  }, [isFocused]);
+  
+  
+  useEffect(()=>{
+    AsyncStorage.getItem('iduser').then(result => {
+      setuser(result);
+      console.log(result);
+    })
+  }, []);
+  useEffect(function () {
+    fetch(`${url}/fav/${user}`)
+      .then((e) => e.json())
+      .then((rep) => setFavList(rep))
+      .catch((err) => {
+        console.log(rep);
+        console.log(favList);
+        setFavList([]);
+      });
+  },);
   const renderItem = ({ item, index }) => {
     return <FavItem item={item} index={index} onChange={setFavList} />;
   };
@@ -64,21 +72,15 @@ export default function favScreen() {
           
         </Text>
       </View>
-      {favList.length > 0 ? (
-        <FlatList
-          style={{ marginTop: 12 }}
-          data={favList}
-          keyExtractor={(item, index) => item + index}
-          renderItem={renderItem}
-        />
-      ) : (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Ionicons name="cart-outline" size={130} color="gray" />
-          <Text style={{ color: "gray", fontSize: 20 }}>Không Có Món Yêu Thích</Text>
-        </View>
-      )}
+      
+      <FlatList
+        data={favList}
+        // renderItem={({ item }) => <Item name={item.name} />}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => item + index}
+        numColumns = {1}
+      />
+     
 
       
     </View>

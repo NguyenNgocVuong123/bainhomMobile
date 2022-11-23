@@ -50,4 +50,15 @@ module.exports = function (app) {
     .put(productsCtrl.update)
     .delete(productsCtrl.delete);
 
+    let favCtrl = require("./controllers/favController");
+
+  // todoList Routes
+  app.route("/fav").get(favCtrl.get).post(favCtrl.store);
+
+  app
+    .route("/fav/:favID")
+    .get(favCtrl.detail)
+
+    .put(favCtrl.update)
+    .delete(favCtrl.delete);
 };

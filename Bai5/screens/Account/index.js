@@ -1,11 +1,34 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
 import { View, Text, StatusBar, Image ,TextInput} from "react-native";
-
+import axios from 'axios';
 import MainButton from "../../src/components/MainButton";
 import Ips from "../../src/input";
-export default function Accont({route, navigation }) {
-    const { Name, Email, Phone} = route.params;
+export default function Accont({ navigation }) {
+
+    const value =  AsyncStorage.getItem('iduser1'); 
+    const [user, setuser] = useState('');
+    const [userName, setuserName] = useState('');
+    const [userPhone, setuserPhone] = useState('');
+
+    useEffect(()=>{
+      AsyncStorage.getItem('iduser1').then(result => {
+        setuser(result);
+        console.log(result);
+      })
+    }, []);
+    useEffect(()=>{
+      AsyncStorage.getItem('iduser2').then(result => {
+        setuserName(result);
+        console.log(result);
+      })
+    }, []);
+    useEffect(()=>{
+      AsyncStorage.getItem('iduser3').then(result => {
+        setuserPhone(result);
+        console.log(result);
+      })
+    }, []);
   return (
     <View
       style={{
@@ -33,7 +56,7 @@ export default function Accont({route, navigation }) {
         >
           Tên
         </Text>
-        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={Name} ></TextInput>
+        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={userName} ></TextInput>
         <Text
           style={{
             fontSize: 24,
@@ -42,7 +65,7 @@ export default function Accont({route, navigation }) {
         >
           Email
         </Text>
-        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={Email} ></TextInput>
+        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={user} ></TextInput>
         <Text
           style={{
             fontSize: 24,
@@ -51,13 +74,15 @@ export default function Accont({route, navigation }) {
         >
           Phone
         </Text>
-        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={Phone} keyboardType="numeric"></TextInput>
+        <TextInput  style={{padding: 10, height: 40,width:250, borderColor: 'gray', borderWidth: 1,borderRadius: 10 }} value={userPhone} keyboardType="numeric"></TextInput>
         
       </View>
+      
       <MainButton
         
         style={{ backgroundColor: "red", marginBottom: 10 }}
         title={"Sửa Thông Tin"}
+        
       />
       <MainButton
         

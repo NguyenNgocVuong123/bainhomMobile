@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView,useEffect } from "react-native";
+import React, { useState,useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -7,14 +7,24 @@ import MainButton from "../../src/components/MainButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
+
 export default function DrinkDetailScreen({ navigation, route }) {
   const params = route.params;
   const { item } = params;
   const [apidata, setApidata] = useState([]);
   const [faves, setFaves] = useState([]);
+  const [user, setuser] = useState('');
+  const url = "http://192.168.0.101:3000";
+  useEffect(()=>{
+    AsyncStorage.getItem('iduser').then(result => {
+      setuser(result);
+      console.log(result);
+    })
+  }, []);
   const onGoBack = () => {
     navigation.goBack();
   };
+  
   // useEffect(function () {
   //   fetch(`http://192.168.0.100:3000/products`)
   //     .then((e) => e.json())
@@ -34,34 +44,16 @@ export default function DrinkDetailScreen({ navigation, route }) {
 //   setApidata()
 // }, [])
   const addTofav = async () => {
-    let favData = await axios.getItem("favData");
-    if (favData) {
-      favData = JSON.parse(favData);
-      favData.push({
-        id: item.id,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        time: item.time,
-        difficult: item.difficult,
-        ingredient: item.ingredient,
-        guide:item.guide,
-      });
-    } else {
-      favData = [];
-      favData.push({
-        id: item.id,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        time: item.time,
-        difficult: item.difficult,
-        ingredient: item.ingredient,
-        guide:item.guide,
-      });
+    try {
+      const res = await axios.post(`${url}/fav/`, {
+        iduser: user.trim(),
+        idproducts: item.ID,
+        
+        });
+
+    } catch (error) {
+      console.log(error);
     }
-    AsyncStaxiosorage.setItem("favData", JSON.stringify(favData));
-    navigation.navigate("favScreen");
   };
   return (
     <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
@@ -107,6 +99,7 @@ export default function DrinkDetailScreen({ navigation, route }) {
         <View>
           <View>
             <Text style={{ fontSize: 20 }}>Thời Gian Nấu: {item.time} </Text>
+            <Text>tes</Text>
           </View>
           <View>
             <Text style={{ fontSize: 20}}>Độ Khó: {item.difficult}</Text>

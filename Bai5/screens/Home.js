@@ -10,6 +10,7 @@ import Btns from "../src/btn";
 import axios from 'axios'
 import Swiper from 'react-native-swiper';
 import Btntab from "../src/btntab";
+import MainButton from "../src/components/MainButton";
 import Item from "../src/Iteam";
 function HomeScreen({ navigation }) {
   const [user, setuser] = useState(null);
@@ -36,6 +37,20 @@ function HomeScreen({ navigation }) {
       setApidata(Response.data);
     });
   };
+  const _retrieveData = async () => {   
+    try {     const value = await AsyncStorage.getItem('iduser1'); 
+        if (value !== null) {       
+    // We have data!!       console.log(value);  
+    alert(value);  
+     } 
+    else{
+      alert("that bai"); 
+    }  } 
+    catch (error) {   
+      
+      // Error retrieving data   
+    } 
+    };
 
   useEffect(function () {
     fetch(urlpro)
@@ -90,6 +105,7 @@ function HomeScreen({ navigation }) {
   const image1 = { uri: "https://media.self.com/photos/622912847b959736301bfb91/2:1/w_1280,c_limit/GettyImages-1301412050.jpg" };
   const image2 = { uri: "https://images.squarespace-cdn.com/content/v1/53b839afe4b07ea978436183/1608506169128-S6KYNEV61LEP5MS1UIH4/traditional-food-around-the-world-Travlinmad.jpg" };
   const image3 = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5n06oW6oAiLlsj2KGNDntJwbBCBKs77CzJLcy_rrNKucMyVKwgDTd1WSE20zVE6vTTjs&usqp=CAU" };
+  
   return (
     <ScrollView>
   <ImageBackground source={image0} style={styles.bg}>
@@ -113,7 +129,6 @@ function HomeScreen({ navigation }) {
   </ImageBackground>
 </Swiper></View>
       <View style={styles.sectionContainer}>
-        
         <Text style={styles.title}>Các Món Theo Lượt Yêu Thích</Text>
         <FlatList
           data={data1}

@@ -8,6 +8,7 @@ import ForgotPassword from "../../screens/ForgotPassword";
 import HomeScreen from "../../screens/Home";
 import DrinkDetailScreen from "../../screens/drinkDetail";
 import HomeTab from "./homeTab";
+import NewProductScreen from "../../screens/newproduct";
 import Accont from "../../screens/Account"; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -26,6 +27,7 @@ function AppNavigation() {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Forgot" component={ForgotPassword} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="favScreen" component={NewProductScreen} />
         <Stack.Screen name="Acc" component={Accont} />
         <Stack.Screen name="HomeTab" component={HomeTab} />
         <Stack.Screen name="DrinkDetailScreen" component={DrinkDetailScreen} />
