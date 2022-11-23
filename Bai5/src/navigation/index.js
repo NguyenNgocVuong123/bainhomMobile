@@ -10,6 +10,7 @@ import DrinkDetailScreen from "../../screens/drinkDetail";
 import HomeTab from "./homeTab";
 import NewProductScreen from "../../screens/newproduct";
 import Accont from "../../screens/Account"; 
+import Search from "../../screens/Search";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ function AppNavigation() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="favScreen" component={NewProductScreen} />
         <Stack.Screen name="Acc" component={Accont} />
+        <Stack.Screen name="searchfood" component={Search} />
         <Stack.Screen name="HomeTab" component={HomeTab} />
         <Stack.Screen name="DrinkDetailScreen" component={DrinkDetailScreen} />
       </Stack.Navigator>

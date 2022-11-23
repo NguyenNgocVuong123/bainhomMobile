@@ -10,11 +10,14 @@ import Btns from "../src/btn";
 import axios from 'axios'
 import Swiper from 'react-native-swiper';
 import Btntab from "../src/btntab";
+import IconFilter from "../src/components/icon";
+import { FontAwesome } from '@expo/vector-icons';
 import MainButton from "../src/components/MainButton";
 import Item from "../src/Iteam";
 function HomeScreen({ navigation }) {
   const [user, setuser] = useState(null);
   const [apidata, setApidata] = useState([]);
+  const [namefood, setnamefood] = useState('');
   const [data1, setdata1] = useState([]);
   let ScreenHeight = Dimensions.get("window").height;
   let urlpro = `http://192.168.0.101:3000/products`;
@@ -110,7 +113,7 @@ function HomeScreen({ navigation }) {
     <ScrollView>
   <ImageBackground source={image0} style={styles.bg}>
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
-    justifyContent: 'center',marginBottom:10}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"  ></TextInput></View>
+    justifyContent: 'center',marginBottom:10}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome name="search" size={24} color="black" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
       <View style={{height:200,borderWidth:3, borderRadius: 20 }}><Swiper style={styles.wrapper} showsButtons autoplay={{delay: 2500}}>
   <ImageBackground source={image1} style={styles.imgbgs}>
   <View style={styles.slide1}>
@@ -139,13 +142,27 @@ function HomeScreen({ navigation }) {
           renderItem={renderItem} />
         
         </View>
-    <View style={{height:70 , backgroundColor: 'red'}}>
-      <FlatList
-      data={apidata}
-      horizontal
-      showsHorizontalScrollIndicator={true}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Item name={item.ingredient} />}/>
+    <View style={{height:70 , flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",}}>
+    <IconFilter 
+    TextFilter = "Trứng"
+    onPress={() => {
+      navigation.navigate("searchfood", { ingredient: "trứng" });
+    }}
+    />
+    <IconFilter 
+    TextFilter = "thịt lợn"
+    onPress={() => {
+      navigation.navigate("searchfood", { ingredient: "thịt lợn" });
+    }}
+    />
+    <IconFilter 
+    TextFilter = "Cá"
+    onPress={() => {
+      navigation.navigate("searchfood", { ingredient: "Cá" });
+    }}
+    />
     </View>
     <View style={styles.sectionContainer}>
     {apidata === "" ? (

@@ -42,7 +42,8 @@ module.exports = function (app) {
 
   // todoList Routes
   app.route("/products").get(productsCtrl.get).post(productsCtrl.store);
-
+  app.route("/products/search/:productSearch").get(productsCtrl.search);
+  app.route("/products/searchname/:productSearch").get(productsCtrl.searchname);
   app
     .route("/products/:productId")
     .get(productsCtrl.detail)
