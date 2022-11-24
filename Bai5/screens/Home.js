@@ -20,15 +20,24 @@ function HomeScreen({ navigation }) {
   const [namefood, setnamefood] = useState('');
   const [data1, setdata1] = useState([]);
   let ScreenHeight = Dimensions.get("window").height;
+<<<<<<< HEAD
   let urlpro = `http://192.168.1.122:3000/products`;
   let urlpro1 = `http://192.168.1.122:3000/products/1`;
+=======
+  let urlpro = `http://192.168.0.101:3000/products`;
+  let urlpro1 = `http://192.168.0.101:3000/products/1`;
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   const [data2, setdata2] = useState([]);
   const renderItem = ({ item, index }) => {
     return <DrinkItem item={item} index={index} navigation={navigation} />;
   };
   const logOut = async () => {
     const res = await axios.get(
+<<<<<<< HEAD
       `http://192.168.1.122:3000/user`
+=======
+      `http://192.168.0.101:3000/user`
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     );
     navigation.reset({
       index: 0,
@@ -36,7 +45,11 @@ function HomeScreen({ navigation }) {
     });
   };
   const getapi = ()=>{
+<<<<<<< HEAD
     axios.get(`http://192.168.1.122:3000/products`).then((Response)=> {
+=======
+    axios.get(`http://192.168.0.101:3000/products`).then((Response)=> {
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
       setApidata(Response.data);
     });
   };
@@ -113,8 +126,13 @@ function HomeScreen({ navigation }) {
     <ScrollView >
   <ImageBackground source={image0} style={styles.bg}>
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
+<<<<<<< HEAD
     justifyContent: 'center',marginBottom:10,paddingBottom: 10, paddingRight: 5, flexDirection: "row"}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 5}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
       <View style={{height:200, padding:10}}><Swiper style={styles.wrapper} showsButtons autoplay={{delay: 2500}}>
+=======
+    justifyContent: 'center',marginBottom:10}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome name="search" size={24} color="black" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
+      <View style={{height:200,borderWidth:3, borderRadius: 20 }}><Swiper style={styles.wrapper} showsButtons autoplay={{delay: 2500}}>
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   <ImageBackground source={image1} style={styles.imgbgs}>
   <View style={styles.slide1}>
     <Text style={styles.text}>Thơm ngon</Text>
@@ -144,13 +162,19 @@ function HomeScreen({ navigation }) {
         </View>
     <View style={{height:70 , flexDirection: "row",
     flexWrap: "wrap",
+<<<<<<< HEAD
     justifyContent: "space-evenly",borderBottomWidth: 7,borderColor: '#A8997D', paddingTop:4}}>
     <IconFilter
+=======
+    justifyContent: "space-evenly",}}>
+    <IconFilter 
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     TextFilter = "Trứng"
     onPress={() => {
       navigation.navigate("searchfood", { ingredient: "trứng" });
     }}
     />
+<<<<<<< HEAD
     
     <IconFilter 
     TextFilter = "Cá"
@@ -158,12 +182,23 @@ function HomeScreen({ navigation }) {
       navigation.navigate("searchfood", { ingredient: "Cá" });
     }}
     />
+=======
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     <IconFilter 
     TextFilter = "thịt lợn"
     onPress={() => {
       navigation.navigate("searchfood", { ingredient: "thịt lợn" });
     }}
     />
+<<<<<<< HEAD
+=======
+    <IconFilter 
+    TextFilter = "Cá"
+    onPress={() => {
+      navigation.navigate("searchfood", { ingredient: "Cá" });
+    }}
+    />
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     </View>
     <View style={styles.sectionContainer}>
     {apidata === "" ? (

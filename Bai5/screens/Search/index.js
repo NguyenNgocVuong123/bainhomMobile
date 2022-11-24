@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
+<<<<<<< HEAD
   ImageBackground
 } from "react-native";
 
@@ -26,6 +27,18 @@ export default function Search({ route }) {
   const navigation = useNavigation();
   const [namefood, setnamefood] = useState('');
   const url = "http://192.168.1.122:3000";
+=======
+} from "react-native";
+
+
+import { useNavigation } from "@react-navigation/native";
+import DrinkItem from "../../src/components/DrinkItem";
+
+export default function Search({ route }) {
+  const navigation = useNavigation();
+
+  const url = "http://192.168.0.101:3000";
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   const [data, setdata] = useState([]);
   const [datasearch, setdatasearch] = useState([]);
   const renderItem = ({ item, index }) => {
@@ -57,6 +70,7 @@ export default function Search({ route }) {
         });
     }
   }, []);
+<<<<<<< HEAD
   const onGoBack = () => {
     navigation.goBack();
   };
@@ -84,6 +98,10 @@ export default function Search({ route }) {
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
     justifyContent: 'center',marginBottom:10,paddingBottom: 10, paddingRight: 15,paddingLeft: 50, flexDirection: "row", borderBottomWidth: 5, borderBottomColor: '#A8997D'}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 5}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
     </ImageBackground>
+=======
+
+  return (
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     <>
       
       {data.length == 0 ? (
@@ -104,7 +122,10 @@ export default function Search({ route }) {
         
       )}
     </>
+<<<<<<< HEAD
     </ScrollView>
+=======
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   );
 }
 

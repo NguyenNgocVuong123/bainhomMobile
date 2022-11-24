@@ -15,7 +15,11 @@ import { Ionicons } from "@expo/vector-icons";
 import FavItem from "../../src/components/CartItem";
 
 export default function favScreen() {
+<<<<<<< HEAD
   const url = "http://192.168.1.122:3000";
+=======
+  const url = "http://192.168.0.101:3000";
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   const isFocused = useIsFocused();
   const [user, setuser] = useState('');
   const [favList, setFavList] = useState([]);

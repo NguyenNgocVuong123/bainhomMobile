@@ -24,7 +24,11 @@ export default function SignInScreen({ navigation }) {
   const [Name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [Phone, setphone] = useState("");
+<<<<<<< HEAD
   const url = "http://192.168.1.122:3000";
+=======
+  const url = "http://192.168.0.101:3000";
+>>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
 
   const onGoBack = () => {
     navigation.goBack();
