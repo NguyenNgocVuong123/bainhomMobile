@@ -5,11 +5,14 @@ import HomeScreen from '../../screens/Home';
 import { Entypo } from '@expo/vector-icons';
 import favScreen from '../../screens/fav';
 import MyTabBar from '../components/TabBar';
+import Accont from '../../screens/Account';
+import NewProductScreen from '../../screens/newproduct';
 // import SearchScreen from '../screens/search';
 // import ProfileScreen from '../screens/profile';
 const Tab = createBottomTabNavigator();
 
-export default function HomeTab() {
+export default function HomeTab({route}) {
+  const { Name, Email, Phone} = route.params;
   return (
     <Tab.Navigator
       tabBar={(props) => <MyTabBar {...props} />}
@@ -18,9 +21,9 @@ export default function HomeTab() {
       }}
     >
       <Tab.Screen name='Home' component={HomeScreen} />
-      {/* <Tab.Screen name='SearchScreen' component={SearchScreen} /> */}
+      <Tab.Screen name='newpro' component={NewProductScreen} />
       <Tab.Screen name='favScreen' component={favScreen} />
-      {/* <Tab.Screen name='Profile' component={ProfileScreen} /> */}
+      <Tab.Screen name='Acc' component={Accont} />
     </Tab.Navigator>
   );
 }

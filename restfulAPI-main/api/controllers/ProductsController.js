@@ -35,6 +35,20 @@ module.exports = {
         res.json({message: 'Update success!'})
     })
 },
+search: (req, res) => {
+  let sql = "SELECT * FROM products WHERE ingredient LIKE ?";
+  db.query(sql, ["%" + req.params.productSearch + "%"], (err, response) => {
+    if (err) throw err;
+    res.json(response);
+  });
+},
+searchname: (req, res) => {
+  let sql = "SELECT * FROM products WHERE name LIKE ?";
+  db.query(sql, ["%" + req.params.productSearch + "%"], (err, response) => {
+    if (err) throw err;
+    res.json(response);
+  });
+},
   store: (req, res) => {
     let data = req.body;
     let sql = "INSERT INTO products SET ?";

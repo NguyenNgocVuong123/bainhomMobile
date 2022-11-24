@@ -42,7 +42,8 @@ module.exports = function (app) {
 
   // todoList Routes
   app.route("/products").get(productsCtrl.get).post(productsCtrl.store);
-
+  app.route("/products/search/:productSearch").get(productsCtrl.search);
+  app.route("/products/searchname/:productSearch").get(productsCtrl.searchname);
   app
     .route("/products/:productId")
     .get(productsCtrl.detail)
@@ -50,4 +51,15 @@ module.exports = function (app) {
     .put(productsCtrl.update)
     .delete(productsCtrl.delete);
 
+    let favCtrl = require("./controllers/favController");
+
+  // todoList Routes
+  app.route("/fav").get(favCtrl.get).post(favCtrl.store);
+
+  app
+    .route("/fav/:favID")
+    .get(favCtrl.detail)
+
+    .put(favCtrl.update)
+    .delete(favCtrl.delete);
 };

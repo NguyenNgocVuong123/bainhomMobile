@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet,ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 function DrinkItem(props) {
@@ -33,25 +33,29 @@ function DrinkItem(props) {
       style={{ ...styles.container, marginLeft: 5,marginRight: 5 }}
       onPress={goToDetail}
     >
-      <Image style={styles.imageStyle} source={{ uri: item?.image }} />
+      <ImageBackground style={styles.imageStyle} source={{ uri: item?.image }}>
       <View style={styles.infoContainer}>
         <Text
           numberOfLines={2}
           style={{
-            color: '#000',
+            color: '#FFFFFF',
             fontWeight: 'bold',
             marginVertical: 8,
+            fontSize:18,
           }}
         >
           {item?.name}
         </Text>
-        <View style={{ flexDirection: 'row' }}>
+      </View>
+  </ImageBackground>
+  <View style={{ flexDirection: 'row' }}>
           <Text style={{ color: '#2FDBBC', fontWeight: 'bold', flex: 1 }}>
             Lượt Thích {item?.like}
           </Text>
           <AntDesign name="like2" size={24} color="black"  onPress={TangLike}/>
         </View>
-      </View>
+      
+      
     </TouchableOpacity>
   );
 }
@@ -63,6 +67,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 150,
     borderRadius: 14,
+    opacity: 0.85,
+    justifyContent: 'flex-end',
+    
+    backgroundColor: 'rgba(0,0,0, 0.40)'
   },
   container: {
     width: 150,
@@ -83,7 +91,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   infoContainer: {
+    
+    marginTop:0,
     paddingHorizontal: 12,
-    marginBottom: 12,
+    marginBottom: 1,
+    opacity: 0.9,
   },
 });

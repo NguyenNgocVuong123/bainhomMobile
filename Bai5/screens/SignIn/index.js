@@ -20,9 +20,9 @@ import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 const URL = "localhost:3000/login"
-let urlpro = `http://192.168.32.105:3000/products`;
-let urlpro1 = `http://192.168.32.105:3000/products`;
-let urluser = `http://192.168.32.105:3000/user`;
+let urlpro = `http://192.168.1.122:3000/products`;
+let urlpro1 = `http://192.168.1.122:3000/products`;
+let urluser = `http://192.168.1.122:3000/user`;
 
 export default function SignInScreen({ navigation }) {
   const [Email, setemail] = useState('');
@@ -37,31 +37,29 @@ export default function SignInScreen({ navigation }) {
       login();
     }
   };
+  const _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('iduser', 'test');
+    } catch (error) {
+      // Error saving data
+    }
+  };
   const login = async () => {
-  //   let userData = await AsyncStorage.getItem('userData');
-  //   if (userData) {
-  //     userData = JSON.parse(userData);
-  //     let arr = [...userData];
-  //     arr = arr.filter(
-  //       (value) =>
-  //         value.Email.toLocaleLowerCase() == Email.toLocaleLowerCase() &&
-  //         value.password == password
-  //     );
-  //     if (arr.length > 0) {
-  //       let curUser = arr[0];
-  //       AsyncStorage.setItem('curUser', JSON.stringify(curUser));
-  //       navigation.navigate('HomeTab');
-  //     } else alert('Email hoặc mật khẩu không chính xác!');
-  //   } else {
-  //     alert('Email hoặc mật khẩu không chính xác!');
-  //   }
-  // };
+
   try {
     const res = await axios.get(
-      `http://192.168.32.105:3000/user/${Email.trim()}`
+      `http://192.168.1.122:3000/user/${Email.trim()}`
     );
     if (res.data.password == password.trim()) {
-      navigation.navigate("Home");
+      console.log('test:'+res.data.ID);
+      await AsyncStorage.setItem('iduser', ''+res.data.ID);
+      await AsyncStorage.setItem('iduser1', ''+res.data.Email);
+      await AsyncStorage.setItem('iduser2', ''+res.data.Name);
+      await AsyncStorage.setItem('iduser3', ''+res.data.Phone);
+      navigation.navigate("HomeTab",{screen: 'HomeTab'
+        
+      });
+      
     } else {
       alert(`Email hoặc mật khẩu không chính xác!`);
     }

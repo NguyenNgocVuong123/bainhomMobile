@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView,useEffect } from "react-native";
+import React, { useState,useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -7,14 +7,25 @@ import MainButton from "../../src/components/MainButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
+
 export default function DrinkDetailScreen({ navigation, route }) {
+  
   const params = route.params;
   const { item } = params;
   const [apidata, setApidata] = useState([]);
   const [faves, setFaves] = useState([]);
+  const [user, setuser] = useState('');
+  const url = "http://192.168.1.122:3000";
+  useEffect(()=>{
+    AsyncStorage.getItem('iduser').then(result => {
+      setuser(result);
+      console.log(result);
+    })
+  }, []);
   const onGoBack = () => {
     navigation.goBack();
   };
+  
   // useEffect(function () {
   //   fetch(`http://192.168.0.100:3000/products`)
   //     .then((e) => e.json())
@@ -34,37 +45,20 @@ export default function DrinkDetailScreen({ navigation, route }) {
 //   setApidata()
 // }, [])
   const addTofav = async () => {
-    let favData = await axios.getItem("favData");
-    if (favData) {
-      favData = JSON.parse(favData);
-      favData.push({
-        id: item.id,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        time: item.time,
-        difficult: item.difficult,
-        ingredient: item.ingredient,
-        guide:item.guide,
-      });
-    } else {
-      favData = [];
-      favData.push({
-        id: item.id,
-        name: item.name,
-        image: item.image,
-        price: item.price,
-        time: item.time,
-        difficult: item.difficult,
-        ingredient: item.ingredient,
-        guide:item.guide,
-      });
+    try {
+      const res = await axios.post(`${url}/fav/`, {
+        iduser: user.trim(),
+        idproducts: item.ID,
+        
+        });
+
+    } catch (error) {
+      console.log(error);
     }
-    AsyncStaxiosorage.setItem("favData", JSON.stringify(favData));
-    navigation.navigate("favScreen");
   };
+  
   return (
-    <ScrollView style={{ backgroundColor: "#fff", flex: 1 }}>
+    <ScrollView style={{ backgroundColor: "#636363", flex: 1 }}>
       <View style={{ position: "relative",borderWidth:1 }}>
         <Image
           style={{ width: "100%", height: 300 }}
@@ -86,7 +80,8 @@ export default function DrinkDetailScreen({ navigation, route }) {
         >
           <Ionicons name="chevron-back-outline" size={30} color="white" />
         </TouchableOpacity>
-        <TouchableOpacity
+        
+        <TouchableOpacity 
           onPress={addTofav}
           style={{
             backgroundColor: "#ffffff60",
@@ -98,41 +93,57 @@ export default function DrinkDetailScreen({ navigation, route }) {
             direction:'rtl',
             borderRadius: 100,
           }}
-        >
-          <MaterialIcons name="favorite-outline" size={30} color="black" />
+          
+        > 
+          <MaterialIcons name="favorite-outline" size={40} />
         </TouchableOpacity>
       </View>
-      <View style={{ paddingHorizontal: 12, marginTop: 12 }}>
-        <Text style={{ fontSize: 35, fontWeight: "bold",marginBottom:20 }}>{item.name}</Text>
-        <View>
+      <View style={{ marginTop: 12 }}>
+        <Text style={{paddingLeft: 20,fontSize: 35,color: 'white', fontWeight: "bold",marginBottom:5,paddingBottom:5,borderBottomWidth: 7, borderBottomColor:'#E3E2C4',}}>{item.name}</Text>
+        <View style={{paddingLeft: 20, paddingTop: 10}}>
           <View>
-            <Text style={{ fontSize: 20 }}>Thời Gian Nấu: {item.time} </Text>
+          <Text
+          style={{
+            color: "white",
+            fontSize: 30,
+            fontWeight: "bold",
+          }}
+        >
+          Mô tả
+        </Text>
+            <Text style={{ fontSize: 15 ,color: '#E3E2C4'}}>Thời Gian Nấu: {item.time} </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 20}}>Độ Khó: {item.difficult}</Text>
+            <Text style={{ fontSize: 15,color: '#E3E2C4'}}>Độ Khó: {item.difficult}</Text>
           </View>
           <View>
-            <Text style={{ fontSize: 20}}>Chi Chí: {item.price}VND</Text>
+            <Text style={{ fontSize: 15,color: '#E3E2C4'}}>Chi Chí: {item.price}VND</Text>
           </View>
         </View>
+        <View >
         <Text
           style={{
-            color: "#000",
-            fontSize: 20,
+            color: "white",
+            fontSize: 30,
             fontWeight: "bold",
             marginTop: 10,
+            paddingLeft: 20
           }}
         >
           Nguyên Liệu 
         </Text>
+        </View>
         <Text
           style={{
-            color: "gray",
+            color: '#E3E2C4',
+            paddingTop:5,
+            paddingLeft: 20,
+            fontSize: 15
           }}
         >
           {item.ingredient}
         </Text>
-        <View style={{ flexDirection: "row", marginTop: 20 }}>
+        <View style={{ flexDirection: "row", marginTop: 20 ,borderTopWidth: 7, borderTopColor:'#E3E2C4'}}>
           <View>
             <View
               style={{
@@ -140,16 +151,20 @@ export default function DrinkDetailScreen({ navigation, route }) {
             fontSize: 20,
             fontWeight: "bold",
             marginTop: 10,
-                
+            paddingLeft: 20
               }}
             >
+              
               <Text style={{
-                color: "#000",
-            fontSize: 20,
+                color: "white",
+            fontSize: 30,
             fontWeight: "bold",
-            marginTop: 10}}>Hướng Dẫn</Text>
-            <Text style={{lineHeight:25}}>{item.guide}</Text>
+            paddingLeft: 110,
+            
+             }}>Hướng Dẫn</Text>
+            <Text style={{lineHeight:25, color: '#E3E2C4'}}>{item.guide}</Text>
             </View>
+        
             {/* <View
               style={{
                 backgroundColor: "#F4F4F4",

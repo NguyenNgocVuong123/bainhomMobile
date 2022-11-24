@@ -24,6 +24,8 @@ export default function SignInScreen({ navigation }) {
   const [Name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [Phone, setphone] = useState("");
+  const url = "http://192.168.1.122:3000";
+
   const onGoBack = () => {
     navigation.goBack();
   };
@@ -41,58 +43,26 @@ export default function SignInScreen({ navigation }) {
     }
   };
   const createAccount = async () => {
-  //   let userData = await AsyncStorage.getItem("userData");
-  //   if (userData) {
-  //     userData = JSON.parse(userData);
-  //     let arr = [...userData];
-  //     arr = arr.filter(
-  //       (value) => value.Email.toLocaleLowerCase() == Email.toLocaleLowerCase()
-  //     );
-  //     if (arr.length > 0) {
-  //       alert("Email already registered!");
-  //       return;
-  //     } else {
-  //       userData.push({
-  //         Name: Name.trim(),
-  //         Email: Email.trim(),
-  //         password: password.trim(),
-  //         Phone: Phone.trim(),
-  //       });
-  //     }
-  //   } else {
-  //     userData = [];
-  //     userData.push({
-  //       Name: Name.trim(),
-  //       Email: Email.trim(),
-  //       password: password.trim(),
-  //       Phone: Phone.trim(),
-  //     });
-  //   }
-  //   AsyncStorage.setItem("userData", JSON.stringify(userData));
-  //   alert("Đăng ký thành công!");
-  //   navigation.goBack();
-  // };
-  try {
-    const res = await axios.get(
-      `http://192.168.32.105:3000/user/${Email.trim()}`
-    );
-    if (res.data.Email == Email.trim()) {
-      alert("Email đã được đăng ký!");
-      return;
-    } else {
-      const res = await axios.post("http://192.168.32.105:3000/user/", {
+    try {
+      const res = await axios.get(`${url}/user/${Email.trim()}`);
+      if (res.data.Email == Email.trim()) {
+        alert("Email đã được đăng ký!");
+        return;
+      } else {
+        const res = await axios.post(`${url}/user/`, {
         Name: Name.trim(),
         Email: Email.trim(),
         password: password.trim(),
         Phone: Phone.trim(),
-      });
-      alert("Đăng ký thành công!");
-      navigation.goBack();
+        });
+        alert("Đăng ký thành công!");
+        navigation.goBack();
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
+  
   return (
     <View style={styles.container}>
       {/* <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }}></Btnback></View> */}
