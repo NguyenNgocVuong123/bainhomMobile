@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 export default function MyTabBar({ state, descriptors, navigation }) {
   var imgArr = [
     require("../../assets/Home.png"),
+    
     require("../../assets/fav.png"),
     require("../../assets/Basket.png"),
     require("../../assets/profile.png"),

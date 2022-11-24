@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState,Component  } from 'react';
-import { placeholder,FlatList, ScrollView, ImageBackground, StatusBar, Text, View, SafeAreaView,TextInput,Dimensions } from 'react-native';
+import { placeholder,FlatList, ScrollView, ImageBackground, StatusBar, Text, View, SafeAreaView,TextInput,Dimensions,VirtualizedList } from 'react-native';
 import DrinkItem from '../src/components/DrinkItem';
 import Ips from "../src/input";
 import { Fontisto } from '@expo/vector-icons';
@@ -17,27 +17,22 @@ import Item from "../src/Iteam";
 function HomeScreen({ navigation }) {
   const [user, setuser] = useState(null);
   const [apidata, setApidata] = useState([]);
+  const [apidataBac, setApidataBac] = useState([]);
+  const [apidataTrung, setApidataTrung] = useState([]);
+  const [apidataNam, setApidataNam] = useState([]);
   const [namefood, setnamefood] = useState('');
   const [data1, setdata1] = useState([]);
   let ScreenHeight = Dimensions.get("window").height;
-<<<<<<< HEAD
-  let urlpro = `http://192.168.1.122:3000/products`;
-  let urlpro1 = `http://192.168.1.122:3000/products/1`;
-=======
   let urlpro = `http://192.168.0.101:3000/products`;
   let urlpro1 = `http://192.168.0.101:3000/products/1`;
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
+  let url = 'http://192.168.0.101:3000';
   const [data2, setdata2] = useState([]);
   const renderItem = ({ item, index }) => {
     return <DrinkItem item={item} index={index} navigation={navigation} />;
   };
   const logOut = async () => {
     const res = await axios.get(
-<<<<<<< HEAD
-      `http://192.168.1.122:3000/user`
-=======
       `http://192.168.0.101:3000/user`
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     );
     navigation.reset({
       index: 0,
@@ -45,11 +40,7 @@ function HomeScreen({ navigation }) {
     });
   };
   const getapi = ()=>{
-<<<<<<< HEAD
-    axios.get(`http://192.168.1.122:3000/products`).then((Response)=> {
-=======
     axios.get(`http://192.168.0.101:3000/products`).then((Response)=> {
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
       setApidata(Response.data);
     });
   };
@@ -74,6 +65,30 @@ function HomeScreen({ navigation }) {
       .then((rep) => setApidata(rep))
       .catch((err) => {
         setApidata([]);
+      });
+  }, []);
+  useEffect(function () {
+    fetch(`${url}/products/searchnameKV/Bắc`)
+      .then((e) => e.json())
+      .then((rep) => setApidataBac(rep))
+      .catch((err) => {
+        setApidataBac([]);
+      });
+  }, []);
+  useEffect(function () {
+    fetch(`${url}/products/searchnameKV/Trung`)
+      .then((e) => e.json())
+      .then((rep) => setApidataTrung(rep))
+      .catch((err) => {
+        setApidataTrung([]);
+      });
+  }, []);
+  useEffect(function () {
+    fetch(`${url}/products/searchnameKV/Nam`)
+      .then((e) => e.json())
+      .then((rep) => setApidataNam(rep))
+      .catch((err) => {
+        setApidataNam([]);
       });
   }, []);
   useEffect(function () {
@@ -123,16 +138,11 @@ function HomeScreen({ navigation }) {
   const image3 = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5n06oW6oAiLlsj2KGNDntJwbBCBKs77CzJLcy_rrNKucMyVKwgDTd1WSE20zVE6vTTjs&usqp=CAU" };
   
   return (
-    <ScrollView >
+  <ScrollView >
   <ImageBackground source={image0} style={styles.bg}>
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
-<<<<<<< HEAD
     justifyContent: 'center',marginBottom:10,paddingBottom: 10, paddingRight: 5, flexDirection: "row"}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 5}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
       <View style={{height:200, padding:10}}><Swiper style={styles.wrapper} showsButtons autoplay={{delay: 2500}}>
-=======
-    justifyContent: 'center',marginBottom:10}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome name="search" size={24} color="black" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
-      <View style={{height:200,borderWidth:3, borderRadius: 20 }}><Swiper style={styles.wrapper} showsButtons autoplay={{delay: 2500}}>
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   <ImageBackground source={image1} style={styles.imgbgs}>
   <View style={styles.slide1}>
     <Text style={styles.text}>Thơm ngon</Text>
@@ -153,7 +163,7 @@ function HomeScreen({ navigation }) {
         <Text style={{paddingBottom: 15, fontSize:30, color: 'lightgray', fontWeight: "bold", paddingLeft: 20}}>Các Món Theo Lượt Yêu Thích</Text>
         <FlatList style={{borderTopWidth: 3, borderRadius: 150,borderColor: '#A8997D', borderBottomWidth: 3, paddingTop: 15}}
           data={data1}
-          horizontal
+          horizontal={true}
           showsHorizontalScrollIndicator={true}
           numRow = {2}
           keyExtractor={(item, index) => item + index}
@@ -162,19 +172,13 @@ function HomeScreen({ navigation }) {
         </View>
     <View style={{height:70 , flexDirection: "row",
     flexWrap: "wrap",
-<<<<<<< HEAD
     justifyContent: "space-evenly",borderBottomWidth: 7,borderColor: '#A8997D', paddingTop:4}}>
     <IconFilter
-=======
-    justifyContent: "space-evenly",}}>
-    <IconFilter 
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     TextFilter = "Trứng"
     onPress={() => {
       navigation.navigate("searchfood", { ingredient: "trứng" });
     }}
     />
-<<<<<<< HEAD
     
     <IconFilter 
     TextFilter = "Cá"
@@ -182,102 +186,70 @@ function HomeScreen({ navigation }) {
       navigation.navigate("searchfood", { ingredient: "Cá" });
     }}
     />
-=======
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     <IconFilter 
     TextFilter = "thịt lợn"
     onPress={() => {
       navigation.navigate("searchfood", { ingredient: "thịt lợn" });
     }}
     />
-<<<<<<< HEAD
-=======
-    <IconFilter 
-    TextFilter = "Cá"
-    onPress={() => {
-      navigation.navigate("searchfood", { ingredient: "Cá" });
-    }}
-    />
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
     </View>
     <View style={styles.sectionContainer}>
     {apidata === "" ? (
       <Text style={styles.loadingText}>Loading...</Text>
     ) : (
       
+      <SafeAreaView style={styles.container}>
+        <Text style={{paddingBottom: 15, fontSize:30, color: 'lightgray', fontWeight: "bold", paddingLeft: 20}}>Các Món Miền Bắc</Text>
       <FlatList
-        data={apidata}
+        data={apidataBac}
+        horizontal={true}
         // renderItem={({ item }) => <Item name={item.name} />}
-        renderItem={renderItem}
         keyExtractor={(item, index) => item + index}
-        numColumns = {2}
+        // numColumns = {2}
+        renderItem={renderItem}
       />
+      </SafeAreaView>
+    )}
+  </View>
+  <View style={styles.sectionContainer}>
+    {apidata === "" ? (
+      <Text style={styles.loadingText}>Loading...</Text>
+    ) : (
       
+      <SafeAreaView style={styles.container}>
+        <Text style={{paddingBottom: 15, fontSize:30, color: 'lightgray', fontWeight: "bold", paddingLeft: 20}}>Các Món Miền Trung</Text>
+      <FlatList
+        data={apidataTrung}
+        horizontal={true}
+        // renderItem={({ item }) => <Item name={item.name} />}
+        keyExtractor={(item, index) => item + index}
+        // numColumns = {2}
+        renderItem={renderItem}
+      />
+      </SafeAreaView>
+    )}
+  </View>
+  <View style={styles.sectionContainer}>
+    {apidata === "" ? (
+      <Text style={styles.loadingText}>Loading...</Text>
+    ) : (
+      
+      <SafeAreaView style={styles.container}>
+        <Text style={{paddingBottom: 15, fontSize:30, color: 'lightgray', fontWeight: "bold", paddingLeft: 20}}>Các Món Miền Nam</Text>
+      <FlatList
+        data={apidataNam}
+        horizontal={true}
+        // renderItem={({ item }) => <Item name={item.name} />}
+        keyExtractor={(item, index) => item + index}
+        // numColumns = {2}
+        renderItem={renderItem}
+      />
+      </SafeAreaView>
     )}
   </View>
   </ImageBackground>
   </ScrollView>
-    // <ScrollView 
-    //   style={{
-    //     backgroundColor: '#fff',
-    //     paddingHorizontal: 12,
-    //     marginTop: StatusBar.currentHeight + 10,
-    //   }}
-    // >
-    //   {/* <Text style={{ marginTop: 20, fontSize: 22 }}>{`Chào, ${
-    //     res && res.name
-    //   }!`}</Text> */}
-    //   <View
-    //     style={{
-    //       backgroundColor: '#67E5CE',
-    //       padding: 20,
-    //       borderRadius: 12,
-    //       marginTop: 20,
-    //     }}
-    //   >
-    //     <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-    //       <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
-    //         App Hướng Dẫn Nấu Ăn
-    //       </Text>
-    //       <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 18 }}>
-    //         Cho Người Mới
-    //       </Text>
-    //     </View>
-    //   </View>
-      // <View style={styles.sectionContainer}>
-      //   <Text style={styles.title}>Các Món Có Thể Bạn Sẽ Thích</Text>
-      //   <FlatList
-      //     data={apidata}
-      //     horizontal
-      //     showsHorizontalScrollIndicator={true}
-      //     keyExtractor={(item, index) => item + index}
-      //     renderItem={renderItem}
-      //   />
-      // </View>
-    //   <View style={styles.sectionContainer}>
-    //     <Text style={styles.title}>Có thể bạn sẽ thích</Text>
-    //     <FlatList
-    //       data={apidata}
-    //       horizontal
-    //       showsHorizontalScrollIndicator={false}
-    //       keyExtractor={(item, index) => item + index}
-    //       renderItem={renderItem}
-    //     />
-    //   <SafeAreaView style={styles.container}>
-    //   <FlatList
-    //     data={apidata}
-    //     renderItem={renderItem}
-    //     keyExtractor={item => item.id}
-    //   />
-    // </SafeAreaView>
-    //   </View>
-    //   <View>
-    //       {/* <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }}></Btnback></View> */}
-    //       <Btns color="#8e64a1" Text='Log Out' onPress={logOut}></Btns>
-          
-    //     </View>
-    // </ScrollView>
-    
+
 
   );
 }

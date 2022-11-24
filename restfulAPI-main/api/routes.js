@@ -43,7 +43,9 @@ module.exports = function (app) {
   // todoList Routes
   app.route("/products").get(productsCtrl.get).post(productsCtrl.store);
   app.route("/products/search/:productSearch").get(productsCtrl.search);
-  app.route("/products/searchname/:productSearch").get(productsCtrl.searchname);
+  app.route("/products/searchname/:productSearchname").get(productsCtrl.searchname);
+  app.route("/products/searchnameKV/:productKV").get(productsCtrl.searchnameKV);
+  app.route("/products/searchCate/:productCate").get(productsCtrl.searchCate);
   app
     .route("/products/:productId")
     .get(productsCtrl.detail)
@@ -57,7 +59,7 @@ module.exports = function (app) {
   app.route("/fav").get(favCtrl.get).post(favCtrl.store);
 
   app
-    .route("/fav/:favID")
+    .route("/fav/:favID/:proID")
     .get(favCtrl.detail)
 
     .put(favCtrl.update)

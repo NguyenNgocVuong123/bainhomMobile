@@ -28,12 +28,10 @@ export default function NewProductScreen({ navigation }) {
   const [description, setdescription] = useState("");
   const [ingredient, setingredient] = useState("");
   const [guide, setguide] = useState("");
+  const [KhuVuc, setKhuVuc] = useState("");
+  const [category, setcategory] = useState("");
   
-<<<<<<< HEAD
-  const url = "http://192.168.1.122:3000";
-=======
   const url = "http://192.168.0.101:3000";
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
 
   const onGoBack = () => {
     navigation.goBack();
@@ -64,6 +62,8 @@ export default function NewProductScreen({ navigation }) {
         ingredient: ingredient.trim(),
         guide: guide.trim(),
         like: `0`,
+        KhuVuc: KhuVuc.trim(),
+        category: category.trim(),
         });
         alert("Thêm Công Thức Thành Công!");
 
@@ -95,7 +95,11 @@ export default function NewProductScreen({ navigation }) {
       <Ips Text="ingredient" placeholder="ingredient" onChangeText={setingredient} /></View>
       <View style={styles.viewtop1}>
       <Ips Text="guide" placeholder="guide" onChangeText={setguide} /></View>
-      <Btns color='#81d3e3' Text='Sign Up' onPress={onSignUp}></Btns>
+      <View style={styles.viewtop1}>
+      <Ips Text="guide" placeholder="KhuVuc" onChangeText={setKhuVuc} /></View>
+      <View style={styles.viewtop1}>
+      <Ips Text="guide" placeholder="Category" onChangeText={setcategory} /></View>
+      <Btns color='#81d3e3' Text='Up' onPress={onSignUp}></Btns>
     </View>
   )
 }

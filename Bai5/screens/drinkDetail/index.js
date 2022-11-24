@@ -15,11 +15,7 @@ export default function DrinkDetailScreen({ navigation, route }) {
   const [apidata, setApidata] = useState([]);
   const [faves, setFaves] = useState([]);
   const [user, setuser] = useState('');
-<<<<<<< HEAD
-  const url = "http://192.168.1.122:3000";
-=======
   const url = "http://192.168.0.101:3000";
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
@@ -106,7 +102,6 @@ export default function DrinkDetailScreen({ navigation, route }) {
         <Text style={{paddingLeft: 20,fontSize: 35,color: 'white', fontWeight: "bold",marginBottom:5,paddingBottom:5,borderBottomWidth: 7, borderBottomColor:'#E3E2C4',}}>{item.name}</Text>
         <View style={{paddingLeft: 20, paddingTop: 10}}>
           <View>
-<<<<<<< HEAD
           <Text
           style={{
             color: "white",
@@ -117,10 +112,6 @@ export default function DrinkDetailScreen({ navigation, route }) {
           Mô tả
         </Text>
             <Text style={{ fontSize: 15 ,color: '#E3E2C4'}}>Thời Gian Nấu: {item.time} </Text>
-=======
-            <Text style={{ fontSize: 20 }}>Thời Gian Nấu: {item.time} </Text>
-            <Text>tes</Text>
->>>>>>> d494c01fbbd502d3e122368a328a857442fb1fef
           </View>
           <View>
             <Text style={{ fontSize: 15,color: '#E3E2C4'}}>Độ Khó: {item.difficult}</Text>

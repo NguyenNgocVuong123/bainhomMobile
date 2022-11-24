@@ -50,7 +50,7 @@ function DrinkItem(props) {
   </ImageBackground>
   <View style={{ flexDirection: 'row' }}>
           <Text style={{ color: '#2FDBBC', fontWeight: 'bold', flex: 1 }}>
-            Lượt Thích {item?.like}
+                    {item?.KhuVuc} .. {item?.like}
           </Text>
           <AntDesign name="like2" size={24} color="black"  onPress={TangLike}/>
         </View>

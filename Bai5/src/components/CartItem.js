@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -6,14 +6,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function FavItem(props) {
   const { item, index, onChange } = props;
+  const [user, setuser] = useState('');
+  const url = "http://192.168.0.101:3000";
+  useEffect(()=>{
+    AsyncStorage.getItem('iduser').then(result => {
+      setuser(result);
+      console.log(result);
+    })
+  }, []);
   const [amount, setamount] = useState(item.amount);
   const handleDelete = async () => {
-    let favData = await AsyncStorage.getItem("favData");
-    favData = JSON.parse(favData);
-    let arr = [...favData];
-    arr.splice(index, 1);
-    AsyncStorage.setItem("favData", JSON.stringify(arr));
-    onChange && onChange(arr);
+    try {
+      const res = await axios.post(`${url}/fav/${user}/${item}`
+        );
+
+    } catch (error) {
+      console.log(error);
+    }
   };
   
   const handleOnRemove = async () => {
@@ -60,8 +69,8 @@ export default function FavItem(props) {
         <View style={{ flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 11 }}>Price: {item.price} VND</Text>
-            <Text style={{ fontSize: 11 }}>Size: {item.size}</Text>
-            <Text style={{ fontSize: 11 }}>Ice: {item.ice}</Text>
+            <Text style={{ fontSize: 11 }}>KhuVuc: {item.KhuVuc}</Text>
+            <Text style={{ fontSize: 11 }}>Category: {item.category}</Text>
           </View>
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             

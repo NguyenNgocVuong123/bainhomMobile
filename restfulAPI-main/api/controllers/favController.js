@@ -37,8 +37,8 @@ module.exports = {
     });
   },
   delete: (req, res) => {
-    let sql = "DELETE FROM favuser WHERE favuser = ?";
-    db.query(sql, [req.params.favID], (err, response) => {
+    let sql = "DELETE FROM favuser WHERE iduser = ? and idproducts = ?";
+    db.query(sql, [req.params.favID,req.params.proID], (err, response) => {
       if (err) throw err;
       res.json({ message: "Delete success!" });
     });

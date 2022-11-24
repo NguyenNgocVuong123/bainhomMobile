@@ -44,7 +44,21 @@ search: (req, res) => {
 },
 searchname: (req, res) => {
   let sql = "SELECT * FROM products WHERE name LIKE ?";
-  db.query(sql, ["%" + req.params.productSearch + "%"], (err, response) => {
+  db.query(sql, ["%" + req.params.productSearchname + "%"], (err, response) => {
+    if (err) throw err;
+    res.json(response);
+  });
+},
+searchnameKV: (req, res) => {
+  let sql = "SELECT * FROM products WHERE KhuVuc LIKE ?";
+  db.query(sql, ["%" + req.params.productKV + "%"], (err, response) => {
+    if (err) throw err;
+    res.json(response);
+  });
+},
+searchCate: (req, res) => {
+  let sql = "SELECT * FROM products WHERE Category LIKE ?";
+  db.query(sql, ["%" + req.params.productCate + "%"], (err, response) => {
     if (err) throw err;
     res.json(response);
   });
