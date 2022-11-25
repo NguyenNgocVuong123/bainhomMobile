@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import FavItem from "../../src/components/CartItem";
 
 export default function favScreen() {
-  const url = "http://192.168.0.101:3000";
+  const url = "http://10.0.60.97:3000";
   const isFocused = useIsFocused();
   const [user, setuser] = useState('');
   const [favList, setFavList] = useState([]);
@@ -33,10 +33,11 @@ export default function favScreen() {
       .then((rep) => setFavList(rep))
       .catch((err) => {
         console.log(rep);
-        console.log(favList);
+        console.log(`${url}/fav/${user}`);
+        console.log(`favList`.favList);
         setFavList([]);
       });
-  },);
+  },[]);
   const renderItem = ({ item, index }) => {
     return <FavItem item={item} index={index} onChange={setFavList} />;
   };

@@ -49,19 +49,20 @@ module.exports = function (app) {
   app
     .route("/products/:productId")
     .get(productsCtrl.detail)
-    .lock(productsCtrl.detail1)
     .put(productsCtrl.update)
     .delete(productsCtrl.delete);
-
+app.route("/products/searchID/:productId").get(productsCtrl.detail1);
     let favCtrl = require("./controllers/favController");
 
   // todoList Routes
   app.route("/fav").get(favCtrl.get).post(favCtrl.store);
 
   app
-    .route("/fav/:favID/:proID")
+    .route("/fav/:favID")
     .get(favCtrl.detail)
-
     .put(favCtrl.update)
+    
+  app
+    .route("/favDL/:favID/:proID")
     .delete(favCtrl.delete);
 };

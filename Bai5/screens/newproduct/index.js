@@ -31,7 +31,7 @@ export default function NewProductScreen({ navigation }) {
   const [KhuVuc, setKhuVuc] = useState("");
   const [category, setcategory] = useState("");
   
-  const url = "http://192.168.0.101:3000";
+  const url = "http://10.0.60.97:3000";
 
   const onGoBack = () => {
     navigation.goBack();

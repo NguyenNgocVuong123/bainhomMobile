@@ -23,16 +23,16 @@ function HomeScreen({ navigation }) {
   const [namefood, setnamefood] = useState('');
   const [data1, setdata1] = useState([]);
   let ScreenHeight = Dimensions.get("window").height;
-  let urlpro = `http://192.168.0.101:3000/products`;
-  let urlpro1 = `http://192.168.0.101:3000/products/1`;
-  let url = 'http://192.168.0.101:3000';
+  let urlpro = `http://10.0.60.97:3000/products`;
+  let urlpro1 = `http://10.0.60.97:3000/products/1`;
+  let url = 'http://10.0.60.97:3000';
   const [data2, setdata2] = useState([]);
   const renderItem = ({ item, index }) => {
     return <DrinkItem item={item} index={index} navigation={navigation} />;
   };
   const logOut = async () => {
     const res = await axios.get(
-      `http://192.168.0.101:3000/user`
+      `http://10.0.60.97:3000/user`
     );
     navigation.reset({
       index: 0,
@@ -40,7 +40,7 @@ function HomeScreen({ navigation }) {
     });
   };
   const getapi = ()=>{
-    axios.get(`http://192.168.0.101:3000/products`).then((Response)=> {
+    axios.get(`http://10.0.60.97:3000/products`).then((Response)=> {
       setApidata(Response.data);
     });
   };

@@ -25,7 +25,7 @@ import { Ionicons } from "@expo/vector-icons";
 export default function Search({ route }) {
   const navigation = useNavigation();
   const [namefood, setnamefood] = useState('');
-  const url = "http://192.168.0.101:3000";
+  const url = "http://10.0.60.97:3000";
   const [data, setdata] = useState([]);
   const [datasearch, setdatasearch] = useState([]);
   const renderItem = ({ item, index }) => {

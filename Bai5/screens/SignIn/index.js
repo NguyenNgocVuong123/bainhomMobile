@@ -20,9 +20,9 @@ import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 const URL = "localhost:3000/login"
-let urlpro = `http://192.168.0.101:3000/products`;
-let urlpro1 = `http://192.168.0.101:3000/products`;
-let urluser = `http://192.168.0.101:3000/user`;
+let urlpro = `http://10.0.60.97:3000/products`;
+let urlpro1 = `http://10.0.60.97:3000/products`;
+let urluser = `http://10.0.60.97:3000/user`;
 
 export default function SignInScreen({ navigation }) {
   const [Email, setemail] = useState('');
@@ -48,7 +48,7 @@ export default function SignInScreen({ navigation }) {
 
   try {
     const res = await axios.get(
-      `http://192.168.0.101:3000/user/${Email.trim()}`
+      `http://10.0.60.97:3000/user/${Email.trim()}`
     );
     if (res.data.password == password.trim()) {
       console.log('test:'+res.data.ID);
