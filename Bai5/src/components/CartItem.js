@@ -29,6 +29,7 @@ export default function FavItem(props) {
     try {
       const res = await axios.delete(`${url}/fav/${user}/${item.idproducts}`);
       // loi axios 404 khong xoa duoc
+      //thử kiểu update,ínert
       console.log(res);
 
     } catch (error) {
