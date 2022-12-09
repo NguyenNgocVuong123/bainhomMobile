@@ -25,7 +25,7 @@ import { Ionicons } from "@expo/vector-icons";
 export default function Search({ route }) {
   const navigation = useNavigation();
   const [namefood, setnamefood] = useState('');
-  const url = "http://10.0.60.97:3000";
+  const url = "https://apihdnauan.onrender.com";
   const [data, setdata] = useState([]);
   const [datasearch, setdatasearch] = useState([]);
   const renderItem = ({ item, index }) => {
@@ -72,7 +72,7 @@ export default function Search({ route }) {
   };
   const image0 = { uri: "https://i.pinimg.com/564x/ae/65/d2/ae65d2ebc5d0addf56101b81943e2c83.jpg" };
   return (
-    <ScrollView >
+    < >
       
       <ImageBackground source={image0} style={{paddingTop: 20}}>
       <TouchableOpacity
@@ -114,7 +114,7 @@ export default function Search({ route }) {
         
       )}
     </>
-    </ScrollView>
+    </>
   );
 }
 

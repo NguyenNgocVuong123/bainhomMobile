@@ -18,9 +18,6 @@ import Ipspass from '../../src/inputpass';
 import Logos from '../../src/logo';
 import axios from "axios";
 import Btnback from '../../src/btnback';
-import * as ImagePicker from 'expo-image-picker';
-import ImageViewer from '../../src/components/ImageViewer';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function NewProductScreen({ navigation }) {
   const [price, setprice] = useState("");
@@ -31,10 +28,8 @@ export default function NewProductScreen({ navigation }) {
   const [description, setdescription] = useState("");
   const [ingredient, setingredient] = useState("");
   const [guide, setguide] = useState("");
-  const [KhuVuc, setKhuVuc] = useState("");
-  const [category, setcategory] = useState("");
-  const [image, setImage] = useState(null);
-  const url = "http://10.0.60.97:3000";
+  
+  const url = "http://192.168.0.101:3000";
 
   const onGoBack = () => {
     navigation.goBack();
@@ -65,8 +60,6 @@ export default function NewProductScreen({ navigation }) {
         ingredient: ingredient.trim(),
         guide: guide.trim(),
         like: `0`,
-        KhuVuc: KhuVuc.trim(),
-        category: category.trim(),
         });
         alert("Thêm Công Thức Thành Công!");
 
@@ -74,35 +67,7 @@ export default function NewProductScreen({ navigation }) {
       console.log(error);
     }
   };
-  // const options ={
-  //   title : 'Select Image',
-  //   type: 'library',
-  //   options:{
-  //     maxHeight: 200,
-  //     maxWidth: 200,
-  //     selectionLimit: 1,
-  //     mediaType: 'photo',
-  //     includeBase64: false,
-  //   },
-  // }
-  // const opentGallery=async()=>{
-  //   const img = await launchImageLibrary(options);
-  //   console.log(img);
-  // }
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      alert(result.assets[0].uri);
-    } else {
-      alert('You did not select any image.');
-    }
-  };
+  
   return (
     <View style={styles.container}>
       {/* <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }}></Btnback></View> */}
@@ -110,7 +75,7 @@ export default function NewProductScreen({ navigation }) {
         <Image source={require('../../img/BackMini.png')}></Image>
       </TouchableOpacity></View>
       <Text style={styles.titleText}>Create new products</Text>
-      {/* <View style={styles.viewtop1}>
+      <View style={styles.viewtop1}>
         <Ips Text="Name" placeholder="Food Name" onChangeText={setname} /></View>
       <View style={styles.viewtop1}>
         <Ips Text="image" placeholder="Link Image" onChangeText={setImg} /></View>
@@ -126,17 +91,7 @@ export default function NewProductScreen({ navigation }) {
       <Ips Text="ingredient" placeholder="ingredient" onChangeText={setingredient} /></View>
       <View style={styles.viewtop1}>
       <Ips Text="guide" placeholder="guide" onChangeText={setguide} /></View>
-      <View style={styles.viewtop1}>
-      <Ips Text="guide" placeholder="KhuVuc" onChangeText={setKhuVuc} /></View>
-      <View style={styles.viewtop1}>
-      <Ips Text="guide" placeholder="Category" onChangeText={setcategory} /></View> */}
-      
-      <Btns color='#81d3e3' Text='Img' onPress={pickImage}></Btns>
-      <ImageViewer
-          
-          selectedImage={image}
-        />  
-      <Btns color='#81d3e3' Text='Up' onPress={onSignUp}></Btns>
+      <Btns color='#81d3e3' Text='Sign Up' onPress={onSignUp}></Btns>
     </View>
   )
 }

@@ -14,8 +14,28 @@ import {
 import Btns from '../../src/btn';
 import Ips from '../../src/input';
 import Logos from '../../src/logo';
+import React, { useEffect, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function LoginScreen({ navigation }) {
-  return (
+  const isFocused = useIsFocused();
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      AsyncStorage.getItem("iduser1").then((res) => {
+        if (res != null) {
+          console.log(res);
+          // navigation.navigate("HomeTab");
+
+        } else {
+          setisLoading(false);
+        }
+      });
+    }, 4500);
+  }, [isFocused]);
+
+  
+    return (
     <View style={styles.container}>
       <Logos></Logos>
       <View style={styles.viewtop}><Text style={styles.titleText}>Welcone to your</Text></View>
@@ -31,6 +51,7 @@ export default function LoginScreen({ navigation }) {
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {

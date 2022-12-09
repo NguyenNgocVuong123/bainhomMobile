@@ -5,7 +5,7 @@ import axios from 'axios';
 function DrinkItem(props) {
   const { item, navigation, index } = props;
   let b = item.ID;
-  let url = `http://192.168.0.100:3000/products/${b}`;
+  let url = `https://apihdnauan.onrender.com/products/${b}`;
   const goToDetail = () => {
     if (navigation) {
       navigation.navigate('DrinkDetailScreen', {
@@ -19,7 +19,7 @@ function DrinkItem(props) {
       console.log(a);
       console.log(b);
       console.log(url);
-      const res = await axios.put("http://192.168.0.100:3000/products/" + b, {
+      const res = await axios.put("https://apihdnauan.onrender.com/products/" + b, {
         like: a,
      });
      console.log(res.data);

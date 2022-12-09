@@ -48,7 +48,7 @@ export default function SignInScreen({ navigation }) {
 
   try {
     const res = await axios.get(
-      `http://10.0.60.97:3000/user/${Email.trim()}`
+      `https://apihdnauan.onrender.com/user/${Email.trim()}`
     );
     if (res.data.password == password.trim()) {
       console.log('test:'+res.data.ID);

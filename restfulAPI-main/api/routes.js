@@ -65,4 +65,10 @@ app.route("/products/searchID/:productId").get(productsCtrl.detail1);
   app
     .route("/favDL/:favID/:proID")
     .delete(favCtrl.delete);
+    app
+    
+    let testc = require("./controllers/test");
+    app
+    .route("/favDL123/:favID/:proID")
+    .get(testc.get);
 };

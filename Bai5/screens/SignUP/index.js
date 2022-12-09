@@ -24,7 +24,7 @@ export default function SignInScreen({ navigation }) {
   const [Name, setname] = useState("");
   const [password, setpassword] = useState("");
   const [Phone, setphone] = useState("");
-  const url = "http://10.0.60.97:3000";
+  const url = "https://apihdnauan.onrender.com";
 
   const onGoBack = () => {
     navigation.goBack();

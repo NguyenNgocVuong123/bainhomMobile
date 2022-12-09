@@ -26,16 +26,14 @@ import { Ionicons } from "@expo/vector-icons";
 export default function CategoryX({ route }) {
   const navigation = useNavigation();
   const [namefood, setnamefood] = useState('');
-  const url = "http://10.0.60.97:3000";
+  const url = "https://apihdnauan.onrender.com";
   const [data, setdata] = useState([]);
   const [datasearch, setdatasearch] = useState([]);
   const renderItem = ({ item, index }) => {
     return <DrinkItem item={item} index={index} navigation={navigation} />;
   };
 
-  function format(n) {
-    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+
 
 
   const onGoBack = () => {

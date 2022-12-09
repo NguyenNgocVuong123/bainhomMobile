@@ -23,9 +23,9 @@ function HomeScreen({ navigation }) {
   const [namefood, setnamefood] = useState('');
   const [data1, setdata1] = useState([]);
   let ScreenHeight = Dimensions.get("window").height;
-  let urlpro = `http://10.0.60.97:3000/products`;
-  let urlpro1 = `http://10.0.60.97:3000/products/1`;
-  let url = 'http://10.0.60.97:3000';
+  let urlpro = `https://apihdnauan.onrender.com/products`;
+  let urlpro1 = `https://apihdnauan.onrender.com/products/1`;
+  let url = 'https://apihdnauan.onrender.com';
   const [data2, setdata2] = useState([]);
   const renderItem = ({ item, index }) => {
     return <DrinkItem item={item} index={index} navigation={navigation} />;

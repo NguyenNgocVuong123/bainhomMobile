@@ -14,8 +14,8 @@ import MainButton from "../../src/components/MainButton";
 import { Ionicons } from "@expo/vector-icons";
 import FavItem from "../../src/components/CartItem";
 
-export default function favScreen() {
-  const url = "http://10.0.60.97:3000";
+export default function FavScreen() {
+  const url = "https://apihdnauan.onrender.com";
   const isFocused = useIsFocused();
   const [user, setuser] = useState('');
   const [favList, setFavList] = useState([]);
@@ -24,7 +24,7 @@ export default function favScreen() {
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
-      console.log(result);
+      
     })
   }, []);
   useEffect(function () {
@@ -32,9 +32,7 @@ export default function favScreen() {
       .then((e) => e.json())
       .then((rep) => setFavList(rep))
       .catch((err) => {
-        console.log(rep);
-        console.log(`${url}/fav/${user}`);
-        console.log(`favList`.favList);
+        
         setFavList([]);
       });
   },[]);

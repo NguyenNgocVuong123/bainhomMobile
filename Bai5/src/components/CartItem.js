@@ -8,29 +8,45 @@ export default function FavItem(props) {
   const { item, index, onChange } = props;
   const [user, setuser] = useState('');
   const [pro,setpro] = useState('');
-  const url = "http://10.0.60.97:3000";
+  const url = "https://apihdnauan.onrender.com";
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
-      console.log(item);
-      console.log(result);
+      
     })
   }, []);
-  useEffect(function () {
-    fetch(`${url}/products/searchID/${item.idproducts}`)
-      .then((e) => e.json())
-      .then((rep) => setpro(rep))
-      .catch((err) => {
-        setpro([]);
-      });
+  async function fetchData() {
+    try {
+      const res1 = await axios.get(`${url}/products/searchID/${item.idproducts}`);
+      setpro(res1.data);
+      
+      
+      
+    } catch (error) {
+      setpro([]);
+      
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
   }, []);
+  // useEffect(function () {
+  //   fetch(`${url}/products/searchID/${item.idproducts}`)
+  //     .then((e) => e.json())
+  //     .then((rep) => setpro(rep))
+  //     .catch((err) => {
+  //       setpro([]);
+  //       console.log(rep);
+  //     });
+  // }, []);
   const [amount, setamount] = useState(item.amount);
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`${url}/fav/${user}/${item.idproducts}`);
+      const res = await axios.delete(`${url}/favDL/${user}/${item.idproducts}`);
       // loi axios 404 khong xoa duoc
       //thử kiểu update,ínert
-      console.log(res);
+      console.log("res");
 
     } catch (error) {
       console.log(`${url}/favDL/${user}/${item.idproducts}`);
