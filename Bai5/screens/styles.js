@@ -3,8 +3,10 @@ import { View } from "react-native-web";
 
 export default StyleSheet.create({
   sectionContainer: {
-    marginTop:20
-
+    marginTop:20,
+    paddingTop: 15,
+    borderTopWidth: 2,
+    borderColor: '#0bcc95',
   },
   title: {
     fontSize: 20,
@@ -12,12 +14,9 @@ export default StyleSheet.create({
     marginBottom: 12,
   },
   bg: {
-    width: "100%",
-    height: 1500,
     flex: 1,
-    justifyContent: "center",
-    // alignItems: "center",
-    flexDirection: 'column',
+    justifyContent: 'center',
+    height: "100%"
   },
 
 
@@ -25,8 +24,8 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 5,
-    borderColor:'#A8997D',
+    borderWidth: 2,
+    borderColor:'#0bcc95',
     borderRadius: 20,
   },
   
@@ -53,7 +52,7 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0,0,0, 0.40)'
   },
   text: {
-    color: 'white',
+    color: 'lightgray',
     fontSize: 30,
     fontWeight: '900'
   },

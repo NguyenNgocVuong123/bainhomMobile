@@ -24,17 +24,18 @@ import {
     iconSP: {
       width: 100,
       height: 40,
-      backgroundColor: "#fff",
+      backgroundColor: "#0bcc95",
       borderRadius: 20,
       elevation: 10,
       shadowOpacity: 1,
       justifyContent: "center",
       alignItems: "center",
       marginVertical: 7,
+      opacity: 0.7
     },
   
     TextSP: {
-        color: '#000',
+      color: 'white',
         fontSize: 20,
     },
   

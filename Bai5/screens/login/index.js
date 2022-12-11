@@ -9,7 +9,8 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import Btns from '../../src/btn';
 import Ips from '../../src/input';
@@ -17,6 +18,7 @@ import Logos from '../../src/logo';
 import React, { useEffect, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {LinearGradient} from 'expo-linear-gradient';
 export default function LoginScreen({ navigation }) {
   const isFocused = useIsFocused();
   const [isLoading, setisLoading] = useState(true);
@@ -33,21 +35,43 @@ export default function LoginScreen({ navigation }) {
       });
     }, 4500);
   }, [isFocused]);
-
+  const imagebg = { uri: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
   
     return (
     <View style={styles.container}>
-      <Logos></Logos>
-      <View style={styles.viewtop}><Text style={styles.titleText}>Welcone to your</Text></View>
-      <Text style={{ marginBottom: 15 }}>Welcone to your app. Build your own social network in minutes</Text>
-      <Btns color="#81d3e3" Text='Log In' onPress={() => {navigation.navigate('SignIn') }} ></Btns>
-            <Btns color="#8e64a1" Text='Sign Up' onPress={() => {navigation.navigate('SignUp') }}></Btns>
+      <ImageBackground source={imagebg} style={styles.bg} resizeMode="cover">
+      <StatusBar barStyle="light-content"/>
+      <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
+          colors={['transparent','black']}
+          style={{
+            height:450,
+            justifyContent: 'flex-end',
+            
+          }}
+          >
+            <Text style={{width:"80%", color:'white', fontSize:42, fontWeight: '800', lineHeight:50, paddingLeft:30, marginBottom: 10}}>
+              Ôi Bạn Ơi ! {"\n"}Nấu ăn dở là do bạn chưa có công thức đấy !
+            </Text>
+            <Text style={{width:"70%", color:'gray', fontSize:22, fontWeight: '900', lineHeight:25, paddingLeft:30, marginBottom: 40}}>
+              Món gì cũng có ! {"\n"}Không có thì rồi sẽ có !
+            </Text>
+            
+        </LinearGradient>
+      <View style={{paddingBottom: 80}}>
+      <Btns color="#0bcc95" Text='Đăng Nhập' onPress={() => {navigation.navigate('SignIn') }}  ></Btns>
+            <Btns color="transparent" Text='Đăng Kí' onPress={() => {navigation.navigate('SignUp') }}></Btns>
+            </View>
       {/* <View style={{margin: 10}}><TouchableOpacity onPress={() => {navigation.navigate('SignInScreen') }} style={styles.BtnC}>
         <Text>Log In</Text>
       </TouchableOpacity></View>
       <View style={{margin: 10}}><TouchableOpacity onPress={() => {navigation.navigate('SignUpScreen') }} style={styles.BtnC}>
         <Text>Sign Up</Text>
       </TouchableOpacity></View> */}
+      
+      </ImageBackground>
+      
     </View>
   )
 }
@@ -56,10 +80,10 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
+    backgroundColor: 'black',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // flexDirection: 'column',
   },
   BtnC:{
     backgroundColor: "#81d3e3",
@@ -80,6 +104,11 @@ const styles = StyleSheet.create({
 
   },
   viewtop: {
-    margin: 20
+    margin: 20,
+  },
+  bg: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    height: 600 
   }
 });

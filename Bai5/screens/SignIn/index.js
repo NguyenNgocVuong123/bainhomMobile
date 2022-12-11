@@ -9,7 +9,8 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import Btns from '../../src/btn';
 import Ips from '../../src/input';
@@ -19,6 +20,8 @@ import Btnback from '../../src/btnback';
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { Ionicons } from "@expo/vector-icons";
+import {LinearGradient} from 'expo-linear-gradient';
 const URL = "localhost:3000/login"
 let urlpro = `http://10.0.60.97:3000/products`;
 let urlpro1 = `http://10.0.60.97:3000/products`;
@@ -67,6 +70,9 @@ export default function SignInScreen({ navigation }) {
     console.log(error);
   }
 };
+const onGoBack = () => {
+  navigation.goBack();
+};
   const goToSignUp = async () => {
     navigation.navigate('SignUpScreen');
   };
@@ -77,26 +83,61 @@ export default function SignInScreen({ navigation }) {
   useEffect(() => {
     checkLogin();
   }, []);
+  const imagesu = { uri: "https://images.pexels.com/photos/255501/pexels-photo-255501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
   return (
     <View style={styles.container}>
-      <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }} >  </Btnback></View>
+      {/* <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }} >  </Btnback></View> */}
+      
       {/* <View style={styles.btnback}><TouchableOpacity onPress={() => { navigation.goBack() }} >
         <Image source={require('../../img/BackMini.png')}></Image>
       </TouchableOpacity></View> */}
-      <View style={styles.viewtop}>
-        <Text style={styles.titleText}>Sign In</Text></View>
+      <ImageBackground source={imagesu} style={styles.su} resizeMode="cover">
+      <StatusBar barStyle="light-content"/>
+      <TouchableOpacity
+          onPress={onGoBack}
+          style={{
+            backgroundColor: "#ffffff60",
+            position: "absolute",
+            top: 60,
+            left: 15,
+            width: 40,
+            height: 45,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 100,
+          }}
+        >
+          <Ionicons name="chevron-back-outline" size={30} color="white" />
+        </TouchableOpacity>
+      <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
+          colors={['transparent','black']}
+          style={{
+            height:550,
+            justifyContent: 'center',
+            
+          }}
+          >
+        <View style={styles.viewtop}>
+        <Text style={styles.titleText}>ĐĂNG NHẬP</Text></View>
       <View style={styles.viewtop1}>
-        <Ips Text="Email" placeholder="TK" onChangeText={setemail} /></View>
+        <Ips placeholder="Tài Khoản" onChangeText={setemail} /></View>
       <View style={styles.viewtop1}>
-        <Ipspass Text="Password" placeholder="Pass"  onChangeText={setpassword}/></View>
+        <Ipspass Text="Password" placeholder="Mật Khẩu" placeholderTextColor = "white"  onChangeText={setpassword}/></View>
       <View style={styles.btn}>
-        <Btns color='#81d3e3' Text='Sign Ip' onPress={goToHome}></Btns>
+        <Btns color='#0bcc95' Text='Đăng Nhập' onPress={goToHome}></Btns>
         {/* <Text style={styles.ortext}>OR</Text> */}
-        <Btns color='#81d3e3' Text='Forgot Password' onPress={() => { navigation.navigate("Forgot") }}></Btns>
+        <Btns color='transparent' Text='Quên Mật Khẩu' onPress={() => { navigation.navigate("Forgot") }}></Btns>
         {/* <View style={{margin: 10}}><TouchableOpacity onPress={() => {navigation.push('Forgotpassword') }} style={styles.BtnC}>
         <Text>Forgot Password</Text>
       </TouchableOpacity></View> */}
         </View>
+            
+            
+        </LinearGradient>
+        
+        </ImageBackground>
     </View>
   )
 }
@@ -104,8 +145,8 @@ export default function SignInScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '',
-    alignItems: 'center',
+    backgroundColor: 'black',
+    // alignItems: 'center',
     // justifyContent: 'center',
 
   },
@@ -121,10 +162,10 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   titleText: {
-    fontSize: 50,
-    // fontWeight: "bold"
-    color: 'blue'
-
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal: 65
   },
   tText: {
     fontSize: 20,
@@ -132,23 +173,30 @@ const styles = StyleSheet.create({
 
   },
   viewtop: {
-    margin: 50
-
+    margin: 30,
+    
   },
   viewtop1: {
-    margin: 8
+    margin: 8,
+    paddingHorizontal: 60,
+    
   },
   ortext: {
     fontSize: 40,
     fontWeight: "bold",
     margin: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   btn: {
     // justifyContent: "center",
     paddingHorizontal: 10,
+  },
+  su: {
+    flex: 1,
+    justifyContent: 'center',
+    height: 600 ?"83%":"10%"
   }
-
 });
 
 

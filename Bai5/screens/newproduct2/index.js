@@ -67,9 +67,10 @@ export default function NewProductScreen({ navigation }) {
       console.log(error);
     }
   };
-  
+  const imagesu = { uri: "https://images.pexels.com/photos/4022090/pexels-photo-4022090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
   return (
     <View style={styles.container}>
+      <ImageBackground source={imagesu} style={styles.su} resizeMode="cover">
       {/* <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip' onPress={() => {navigation.goBack() }}></Btnback></View> */}
       <View style={styles.btnback}><TouchableOpacity onPress={() => { navigation.goBack() }} >
         <Image source={require('../../img/BackMini.png')}></Image>
@@ -92,16 +93,14 @@ export default function NewProductScreen({ navigation }) {
       <View style={styles.viewtop1}>
       <Ips Text="guide" placeholder="guide" onChangeText={setguide} /></View>
       <Btns color='#81d3e3' Text='Sign Up' onPress={onSignUp}></Btns>
+      </ImageBackground>
     </View>
   )
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '',
-    alignItems: 'center',
-    // justifyContent: 'center',
-    flexDirection: 'column',
+    backgroundColor: 'black',
   },
   titleText: {
     fontSize: 40,
@@ -121,5 +120,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 20
   },
+  su: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    height: "100%"
+  }
 });
 

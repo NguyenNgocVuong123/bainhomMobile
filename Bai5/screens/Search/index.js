@@ -70,19 +70,19 @@ export default function Search({ route }) {
   const onGoBack = () => {
     navigation.goBack();
   };
-  const image0 = { uri: "https://i.pinimg.com/564x/ae/65/d2/ae65d2ebc5d0addf56101b81943e2c83.jpg" };
+  const image0 = { uri: "https://images.pexels.com/photos/4022090/pexels-photo-4022090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
   return (
     < >
       
-      <ImageBackground source={image0} style={{paddingTop: 20}}>
+      <ImageBackground source={image0} style={{paddingTop: 20}}resizeMode="repeat">
       <TouchableOpacity
           onPress={onGoBack}
           style={{
             backgroundColor: "#ffffff60",
             position: "absolute",
-            top: 50,
-            left: 5,
-            width: 40,
+            top: 52,
+            left: 10,
+            width: 45,
             height: 45,
             justifyContent: "center",
             alignItems: "center",
@@ -92,10 +92,10 @@ export default function Search({ route }) {
           <Ionicons name="chevron-back-outline" size={30} color="white" />
         </TouchableOpacity>
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
-    justifyContent: 'center',marginBottom:10,paddingBottom: 10, paddingRight: 15,paddingLeft: 50, flexDirection: "row", borderBottomWidth: 5, borderBottomColor: '#A8997D'}}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 5}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
-    </ImageBackground>
+    justifyContent: 'center',marginBottom:5,paddingBottom: 10, marginRight: 18,marginLeft: 68, flexDirection: 'row', }}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 12}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
+    
     <>
-      
+      <View style={{borderBottomWidth: 2, borderBottomColor: '#0bcc95', marginBottom:5}}></View>
       {data.length == 0 ? (
         <View>
           <Text style={{ color: "red", fontSize: 15 }}>
@@ -113,8 +113,11 @@ export default function Search({ route }) {
       />
         
       )}
+      
     </>
+    </ImageBackground>
     </>
+    
   );
 }
 

@@ -9,50 +9,100 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import Btns from '../../src/btn';
 import Ips from '../../src/input';
 import Ipspass from '../../src/inputpass';
 import Logos from '../../src/logo';
 import Btnback from '../../src/btnback';
+import RNSmtpMailer from "react-native-smtp-mailer";
+import { Ionicons } from "@expo/vector-icons";
+import {LinearGradient} from 'expo-linear-gradient';
+
 
 export default function ForgotPassword({ navigation }) {
+  const onGoBack = () => {
+    navigation.goBack();
+  };
+  
+  const imagesu = { uri: "https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
   return (
+    
     <View style={styles.container}>
-      <View style={styles.btnback} ><Btnback color='#81d3e3' Text='Sign Ip'  onPress={() => {navigation.goBack()}}></Btnback></View>
-      {/* <View style={styles.btnback}><TouchableOpacity onPress={() => { navigation.goBack() }} >
-        <Image source={require('../../img/BackMini.png')}></Image>
-      </TouchableOpacity></View> */}
-      <View style={styles.viewtop}>
-        <Text style={styles.titleText}>Sign In</Text></View>
+      <ImageBackground source={imagesu} style={styles.su} resizeMode="cover">
+    <StatusBar barStyle="light-content"/>
+      <TouchableOpacity
+          onPress={onGoBack}
+          style={{
+            backgroundColor: "#ffffff60",
+            position: "absolute",
+            top: 60,
+            left: 15,
+            width: 40,
+            height: 45,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 100,
+          }}
+        >
+          <Ionicons name="chevron-back-outline" size={30} color="white" />
+        </TouchableOpacity>
+        <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 0, y: 1}}
+          colors={['transparent','black']}
+          style={{
+            height:550,
+            justifyContent: 'center',
+            
+          }}
+          >
+        <View style={styles.viewtop}>
+        <Text style={styles.titleText}>QUÊN MẬT KHẨU</Text></View>
       <View style={styles.viewtop1}>
-        <Ips Text="Email" placeholder="TK" /></View>
+        <Ips placeholder="Email" /></View>
       <View style={styles.btn}>
-        <Btns color='#81d3e3' Text='Search'></Btns>
+        <Btns color='#0bcc95' Text='Gửi Yêu Cầu'></Btns>
         {/* <Text style={styles.ortext}>OR</Text> */}
       </View>
+            
+            
+        </LinearGradient>
+      
+      </ImageBackground>
     </View>
+    
   )
+  
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '',
-    alignItems: 'center',
+    backgroundColor: 'black',
+    // alignItems: 'center',
     // justifyContent: 'center',
 
+  },
+  BtnC:{
+    backgroundColor: "#81d3e3",
+        paddingHorizontal: 80,
+        paddingVertical: 15,
+        borderRadius: 30,
+        alignItems: "center",
   },
   btnback: {
     alignSelf: 'flex-start',
     marginTop: 20
   },
   titleText: {
-    fontSize: 50,
-    // fontWeight: "bold"
-    color: 'blue'
-
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal: 5,
+    marginHorizontal: 20
   },
   tText: {
     fontSize: 20,
@@ -60,25 +110,30 @@ const styles = StyleSheet.create({
 
   },
   viewtop: {
-    margin: 50
-
+    margin: 30,
+    
   },
   viewtop1: {
-    margin: 8
+    margin: 8,
+    paddingHorizontal: 60,
+    
   },
   ortext: {
     fontSize: 40,
     fontWeight: "bold",
     margin: 20,
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   btn: {
     // justifyContent: "center",
-
     paddingHorizontal: 10,
-
+  },
+  su: {
+    flex: 1,
+    justifyContent: 'center',
+    height: 600 ?"83%":"10%"
   }
-
+  
 });
-
 
