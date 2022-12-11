@@ -30,7 +30,9 @@ export default function MyTabBar({ state, descriptors, navigation }) {
           });
 
           if (!isFocused && !event.defaultPrevented) {
+            console.log("navi");
             navigation.navigate(route.name);
+            
           }
         };
 

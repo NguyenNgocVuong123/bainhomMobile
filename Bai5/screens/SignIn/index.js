@@ -60,7 +60,6 @@ export default function SignInScreen({ navigation }) {
       await AsyncStorage.setItem('iduser2', ''+res.data.Name);
       await AsyncStorage.setItem('iduser3', ''+res.data.Phone);
       navigation.navigate("HomeTab",{screen: 'HomeTab'
-        
       });
       
     } else {

@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Btns from '../../src/btn';
 import Ips from '../../src/input';
+import React, { useEffect, useState,Component  } from 'react';
 import Ipspass from '../../src/inputpass';
 import Logos from '../../src/logo';
 import Btnback from '../../src/btnback';
@@ -25,6 +26,43 @@ import {LinearGradient} from 'expo-linear-gradient';
 export default function ForgotPassword({ navigation }) {
   const onGoBack = () => {
     navigation.goBack();
+  };
+  const [emailto, setuser] = useState('');
+  // const Forgot=()=>{
+  //   RNSmtpMailer.sendMail({
+  //     mailhost: "smtp.gmail.com",
+  //     port: "465",
+  //     ssl: true, // optional. if false, then TLS is enabled. Its true by default in android. In iOS TLS/SSL is determined automatically, and this field doesn't affect anything
+  //     username: "chihirotran@gmail.com",
+  //     password: "wjrdxqfpiioggxgi",
+  //     fromName: "Some Name", // optional
+  //     replyTo: `${emailto}`, // optional
+  //     recipients: "toEmail1,toEmail2",
+  //     bcc: ["bccEmail1", "bccEmail2"], // optional
+  //     subject: "subject",
+  //     htmlBody: "<h1>header</h1><p>body</p>",
+  //      // required in android, these are renames of original files. in ios filenames will be same as specified in path. In a ios-only application, no need to define it
+  //   })
+  //     .then(success => console.log(success))
+  //     .catch(err => console.log(err));
+  // }
+  const sendEmail = () => {
+    // RNSmtpMailer.sendMail({
+    //   mailhost: "smtp.gmail.com",
+    //   port: "465",
+    //   ssl: true, //if ssl: false, TLS is enabled,**note:** in iOS TLS/SSL is determined automatically, so either true or false is the same
+    //   username: "chihirotran@gmail.com",
+    //   password: "wjrdxqfpiioggxgi",
+    //   from: `${emailto}`,
+    //   recipients: "toEmail1,toEmail2",
+    //   subject: "subject",
+    //   htmlBody: "<h1>header</h1><p>body</p>",
+    //   attachmentPaths: ["pathToFile1.png","pathToFile2.txt","pathToFile3.csv"],
+    //   attachmentNames: ["image.jpg", "firstFile.txt", "secondFile.csv"],//only used in android, these are renames of original files. in ios filenames will be same as specified in path. In ios-only application, leave it empty: attachmentNames:[] 
+    //   attachmentTypes: ["img", "txt", "csv"]//needed for android, in ios-only application, leave it empty: attachmentTypes:[]
+    // })
+    //   .then(success => alert(success))
+    //   .catch(err => alert(err));
   };
   
   const imagesu = { uri: "https://images.pexels.com/photos/35629/bing-cherries-ripe-red-fruit.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
@@ -62,9 +100,9 @@ export default function ForgotPassword({ navigation }) {
         <View style={styles.viewtop}>
         <Text style={styles.titleText}>QUÊN MẬT KHẨU</Text></View>
       <View style={styles.viewtop1}>
-        <Ips placeholder="Email" /></View>
+        <Ips placeholder="Email" onChaneText={setuser}/></View>
       <View style={styles.btn}>
-        <Btns color='#0bcc95' Text='Gửi Yêu Cầu'></Btns>
+        <Btns color='#0bcc95' Text='Gửi Yêu Cầu' onPress={sendEmail}></Btns>
         {/* <Text style={styles.ortext}>OR</Text> */}
       </View>
             

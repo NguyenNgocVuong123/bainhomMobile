@@ -13,31 +13,58 @@ import { useState } from "react";
 import MainButton from "../../src/components/MainButton";
 import { Ionicons } from "@expo/vector-icons";
 import FavItem from "../../src/components/CartItem";
-
-export default function FavScreen() {
+import Ycitem from "../../src/components/Favsceent";
+import Button from "../../src/components/Button";
+import axios from "axios";
+export default function FavScreen(navigation) {
   const url = "https://apihdnauan.onrender.com";
   const isFocused = useIsFocused();
   const [user, setuser] = useState('');
   const [favList, setFavList] = useState([]);
-  
-  
+  const [favList1, setFavLis1] = useState([]);
+  async function fetchData() {
+    try {
+      const res1 = await axios.get(`${url}/fav/${user}`);
+      setFavList(res1.data);
+      
+      
+      
+    } catch (error) {
+      setFavList([]);
+      
+    }
+  }
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
       
     })
   }, []);
-  useEffect(function () {
-    fetch(`${url}/fav/${user}`)
-      .then((e) => e.json())
-      .then((rep) => setFavList(rep))
-      .catch((err) => {
-        
-        setFavList([]);
-      });
-  },[]);
+  useEffect(() => {
+    axios
+    .get(`${url}/fav/${user}`)
+    .then((res) => {
+      setFavList(res.data);
+    })
+    .catch((err) => {
+      setFavList([]);
+    });
+  })
+  // useEffect(function () {
+    
+  //   fetch(`${url}/fav/${user}`)
+  //     .then((e) => e.json())
+  //     .then((rep) => (setFavList(rep),console.log(`${url}/fav/${user}`)))
+  //     .catch((err) => {
+  //       console.log("Loi");
+  //       setFavList([]);
+  //     });
+  // },[]);
+  const testt= async () => {
+    console.log(favList);
+  }
   const renderItem = ({ item, index }) => {
-    return <FavItem item={item} index={index} onChange={setFavList} />;
+    return <FavItem item={item} index={index} navigation={navigation} />;
   };
 
   return (
@@ -57,6 +84,7 @@ export default function FavScreen() {
             color: "#2FDBBC",
             flex: 1,
           }}
+          onPress={testt}
         >
           Món Ăn Yêu Thích
         </Text>
@@ -70,8 +98,9 @@ export default function FavScreen() {
         >
           
         </Text>
+        
       </View>
-      
+     
       <FlatList
         data={favList}
         // renderItem={({ item }) => <Item name={item.name} />}

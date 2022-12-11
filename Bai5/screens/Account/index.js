@@ -16,7 +16,7 @@ export default function Accont({ navigation }) {
     };
     const ChangeAccount = async () => {
       try {
-        const res = await axios.get(`${url}/users/email/${useremail.trim()}`);
+        const res = await axios.get(`${url}/users/email/${user.trim()}`);
   
         if (useremail.trim() != doiemail.trim() && res.data != "") {
           alert("Email đã được đăng ký!");

@@ -28,6 +28,8 @@ export default function LoginScreen({ navigation }) {
         if (res != null) {
           console.log(res);
           // navigation.navigate("HomeTab");
+          navigation.navigate("HomeTab",{screen: 'HomeTab'});
+          console.log("1tr");
 
         } else {
           setisLoading(false);

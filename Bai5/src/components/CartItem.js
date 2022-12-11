@@ -5,10 +5,17 @@ import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 export default function FavItem(props) {
-  const { item, index, onChange } = props;
+  const { item, index,navigation } = props;
   const [user, setuser] = useState('');
   const [pro,setpro] = useState('');
   const url = "https://apihdnauan.onrender.com";
+  const goToDetail = () => {
+    if (navigation) {
+      navigation.navigate('DrinkDetailScreen', {
+        item: item,
+      });
+    }
+  };
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
@@ -43,18 +50,18 @@ export default function FavItem(props) {
   const [amount, setamount] = useState(item.amount);
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`${url}/favDL/${user}/${item.idproducts}`);
-      // loi axios 404 khong xoa duoc
-      //thử kiểu update,ínert
+      console.log(`${item.idproducts}`);
+      const res = await axios.delete(`${url}/favDL/${user}/${item.ID}`);
+
       console.log("res");
 
     } catch (error) {
-      console.log(`${url}/favDL/${user}/${item.idproducts}`);
+      console.log(`${url}/favDL/${user}/${item.ID}`);
       console.log(error);
     }
   };
   return (
-    <View
+    <TouchableOpacity
       style={{
         flexDirection: "row",
         marginBottom: 12,
@@ -71,21 +78,22 @@ export default function FavItem(props) {
         backgroundColor: "#fff",
         padding: 6,
       }}
+      onPress={goToDetail}
     >
       <Image
-        source={{ uri: pro?.image }}
+        source={{ uri: item?.image }}
         style={{ height: 80, width: 80, borderRadius: 20, marginRight: 12 }}
       />
       <View style={{ flex: 1 }}>
         <View style={{ flexDirection: "row" }}>
-          <Text style={{ fontWeight: "bold" }}>{pro?.name} - </Text>
+          <Text style={{ fontWeight: "bold" }}>{item?.name} - </Text>
           <Text style={{ fontWeight: "bold", color: "#F99928" }}>
-            {pro?.owner}
+            {item?.owner}
           </Text>
         </View>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 11 }}>Price: {pro?.price} VND</Text>
+            <Text style={{ fontSize: 11 }}>Price: {item?.price} VND</Text>
             <Text style={{ fontSize: 11 }}>KhuVuc: {}</Text>
             <Text style={{ fontSize: 11 }}>Category: {}</Text>
           </View>
@@ -94,6 +102,7 @@ export default function FavItem(props) {
             
           </View>
           <TouchableOpacity
+           
             onPress={handleDelete}
             style={{
               marginLeft: 25,
@@ -105,6 +114,6 @@ export default function FavItem(props) {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

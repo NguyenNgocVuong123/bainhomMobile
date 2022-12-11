@@ -15,7 +15,7 @@ export default function DrinkDetailScreen({ navigation, route }) {
   const [apidata, setApidata] = useState([]);
   const [faves, setFaves] = useState([]);
   const [user, setuser] = useState('');
-  const url = "http://10.0.60.97:3000";
+  const url = "https://apihdnauan.onrender.com";
   useEffect(()=>{
     AsyncStorage.getItem('iduser').then(result => {
       setuser(result);
