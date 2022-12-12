@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StatusBar, Image ,TextInput,StyleSheet,TouchableOpacity,Button} from "react-native";
+import { View, Text, StatusBar, Image ,TextInput,StyleSheet,TouchableOpacity,Button,ImageBackground} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import Ips from '../../src/input';
 import Btns from '../../src/btn';
@@ -91,41 +91,44 @@ export default function ImagePickerExample() {
       console.log(result);
     }
   };
-
+  const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    
+    <View style={{ flex: 1,backgroundColor: 'black' }}>
+      <ImageBackground source={image0} style={styles.su} resizeMode='repeat'>
+      <View style={styles.viewtop}>
+        <Text style={styles.titleText}>THÊM</Text><Text style={styles.titleText2}>MÓN</Text></View>
       <View style={styles.profile_edit_textinput}>
-        <Ips Text="Name" placeholder="Food Name" onChangeText={setname} /></View>
-      
-        
+        <Ips  placeholder="Tên Món Ăn" onChangeText={setname} /></View>
       <View style={styles.profile_edit_textinput}>
-        <Ips Text="price" placeholder="price approx" onChangeText={setprice} /></View>
+        <Ips  placeholder="Ước Tính Chi Phí" onChangeText={setprice} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="time" placeholder="time" onChangeText={settime} /></View>
+      <Ips  placeholder="Thời Gian Nấu" onChangeText={settime} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="difficult" placeholder="Difficult" onChangeText={setdifficult} /></View>
+      <Ips  placeholder="Độ Khó" onChangeText={setdifficult} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="description" placeholder="Description" onChangeText={setdescription} /></View>
+      <Ips  placeholder="Mô Tả" onChangeText={setdescription} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="ingredient" placeholder="ingredient" onChangeText={setingredient} /></View>
+      <Ips  placeholder="Nguyên Liệu" onChangeText={setingredient} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="guide" placeholder="guide" onChangeText={setguide} /></View>
+      <Ips  placeholder="Hướng Dẫn" onChangeText={setguide} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="guide" placeholder="KhuVuc" onChangeText={setKhuVuc} /></View>
+      <Ips  placeholder="Khu Vực" onChangeText={setKhuVuc} /></View>
       <View style={styles.profile_edit_textinput}>
-      <Ips Text="guide" placeholder="Category" onChangeText={setcategory} /></View>
-      <Button title="Pick an image " onPress={pickImage} />
+      <Ips  placeholder="Loại" onChangeText={setcategory} /></View>
+      <Btns color="#0bcc95" Text='Chọn Ảnh Món Ăn' onPress={pickImage} />
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-      <Btns color='#81d3e3' Text='Up' onPress={onSignUp}></Btns>
-
+      <Btns color='lightgray'   Text='Thêm Món' onPress={onSignUp}></Btns>
+      </ImageBackground>
     </View>
   );
 }
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "black",
+    
   },
   profile_show: {
     flex: 2,
@@ -151,6 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "500",
     marginTop: 10,
+    
   },
   text_info: { color: "gray", fontStyle: "italic" },
 
@@ -162,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   profile_edit_textinput: {
-    marginLeft: 20,
+    marginLeft: 70,
     fontSize: 18,
     paddingVertical: 8,
     width: "100%",
@@ -185,4 +189,33 @@ const styles = StyleSheet.create({
     right: 30,
   },
   imgSua: { width: "100%", height: "100%" },
+  su: {
+    flex: 1,
+    justifyContent: 'center',
+    height: "100%",
+    
+  },
+  viewtop: {
+    marginTop: 5,
+    paddingBottom: 15,
+    flexDirection:'row',
+    marginBottom: 10
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingTop:8,
+    paddingLeft: 100,
+    marginTop:40
+  },
+  titleText2:{
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal:8,
+    marginTop:40,
+    paddingTop:8,
+    color: '#0bcc95'
+  },
 });

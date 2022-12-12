@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
-import { View, Text, StatusBar, Image ,TextInput,StyleSheet,TouchableOpacity} from "react-native";
+import { View, Text, StatusBar, Image ,TextInput,StyleSheet,TouchableOpacity,ImageBackground,} from "react-native";
 import axios from 'axios';
 import MainButton from "../../src/components/MainButton";
 import Ips from "../../src/input";
@@ -58,18 +58,25 @@ export default function Accont({ navigation }) {
         console.log(result);
       })
     }, []);
+    const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
     return (
       <View style={styles.main}>
+        <ImageBackground source={image0} style={styles.su} resizeMode='repeat'>
+        
         <View style={styles.profile_show}>
+          
           <View style={styles.profile_show_image}>
             <Image
               style={styles.img}
               source={require("../../assets/profile.png")}
+              
             />
           </View>
           <Text style={styles.text_name}>{userName}</Text>
           <Text style={styles.text_info}>Điền thông tin để chỉnh sửa</Text>
+          
         </View>
+        
         <View style={styles.profile_edit}>
           <View style={styles.profile_edit_input}>
             <Image source={require("../../assets/iconuser.png")} />
@@ -89,7 +96,7 @@ export default function Accont({ navigation }) {
           </View>
           <View style={styles.profile_edit_input}>
             <Image source={require("../../assets/iconphone.png")} />
-            <TextInput
+            <TextInput 
               value={userPhone}
               onChangeText={setuserPhone}
               style={styles.profile_edit_textinput}
@@ -98,7 +105,7 @@ export default function Accont({ navigation }) {
           
           
           <TouchableOpacity style={styles.btnLogout} onPress={DangXuat}>
-            <Image source={require("../../assets/icondangxuat.png")} />
+            
             <Text style={styles.textLogout}>Đăng Xuất</Text>
           </TouchableOpacity>
         </View>
@@ -108,6 +115,7 @@ export default function Accont({ navigation }) {
             source={require("../../assets/iconluu.png")}
           />
         </TouchableOpacity>
+        </ImageBackground>
       </View>
     );
   }
@@ -119,10 +127,11 @@ export default function Accont({ navigation }) {
     },
     profile_show: {
       flex: 2,
-      backgroundColor: "#0c1b32",
+      backgroundColor: 'black',
       justifyContent: "center",
       alignItems: "center",
-      paddingTop: StatusBar.currentHeight,
+      paddingTop: 20,
+      opacity: 0.8
     },
     profile_show_image: {
       backgroundColor: "#fff",
@@ -135,6 +144,7 @@ export default function Accont({ navigation }) {
       width: 130,
       height: 130,
       borderRadius: 100,
+      
     },
     text_name: {
       color: "white",
@@ -144,7 +154,10 @@ export default function Accont({ navigation }) {
     },
     text_info: { color: "gray", fontStyle: "italic" },
   
-    profile_edit: { flex: 3, paddingHorizontal: 15 },
+    profile_edit: { flex: 3, paddingHorizontal: 15,
+      borderTopWidth: 2,
+      borderColor: '#0bcc95',
+    },
     profile_edit_input: {
       flexDirection: "row",
       flex: 1,
@@ -153,19 +166,37 @@ export default function Accont({ navigation }) {
     },
     profile_edit_textinput: {
       marginLeft: 20,
-      fontSize: 18,
+      fontSize: 24,
       paddingVertical: 8,
-      width: "100%",
+      width: 300,
+      borderWidth: 1,
+      borderColor: '#0bcc95',
+      borderRadius: 100,
+      color: 'black',
+      paddingHorizontal: 20,
+      backgroundColor: 'lightgray',
+      opacity: 0.7
     },
     btnLogout: {
       flex: 1,
       flexDirection: "row",
       alignItems: "center",
+      paddingLeft: 58
     },
     textLogout: {
-      color: "#fac745",
+      backgroundColor: '#0bcc95',
+      color: "white",
       fontSize: 20,
-      marginLeft: 20,
+      paddingLeft: 76,
+      paddingHorizontal: 70,
+    paddingVertical: 15,
+    borderRadius: 30,
+    alignItems: "center",
+    width: 250,
+    borderColor: '#0bcc95',
+    borderWidth: 1,
+    opacity:0.8,
+    
     },
     btnSua: {
       position: "absolute",
@@ -175,4 +206,39 @@ export default function Accont({ navigation }) {
       right: 30,
     },
     imgSua: { width: "100%", height: "100%" },
+    container: {
+      flex: 1,
+      backgroundColor: 'black',
+    },
+  
+  
+    list: {
+      backgroundColor: "#fff",
+      margin: 5,
+      alignItems: "center",
+      borderWidth: 1,
+      borderColor: "#cccc",
+      borderRadius: 5,
+      justifyContent: "center",
+      height: 250,
+    },
+    img: {
+      width: 150,
+      height: 150,
+      borderColor: '#0bcc95',
+      borderWidth: 2,
+      borderRadius: 100
+    },
+    icon: {
+      backgroundColor: "#F0FFF0",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-evenly",
+      
+    },
+    su: {
+      flex: 1,
+      justifyContent: 'flex-start',
+      height: "100%"
+    }
   });

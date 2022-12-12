@@ -77,6 +77,9 @@ export default function FavItem(props) {
         borderRadius: 20,
         backgroundColor: "#fff",
         padding: 6,
+        opacity: 0.8,
+        borderWidth: 2,
+        borderColor: '#0bcc95'
       }}
       onPress={goToDetail}
     >
@@ -93,9 +96,9 @@ export default function FavItem(props) {
         </View>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 11 }}>Price: {item?.price} VND</Text>
-            <Text style={{ fontSize: 11 }}>KhuVuc: {}</Text>
-            <Text style={{ fontSize: 11 }}>Category: {}</Text>
+            <Text style={{ fontSize: 11 }}>Chi Phí: {item?.price} VND</Text>
+            <Text style={{ fontSize: 11 }}>Khu Vực: {}</Text>
+            <Text style={{ fontSize: 11 }}>Loại: {}</Text>
           </View>
           <View style={{ alignItems: "center", flexDirection: "row" }}>
             

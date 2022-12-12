@@ -10,7 +10,7 @@ export default function Btns(props) {
 // />
 <View style={{margin:10, justifyContent: 'center', alignItems: 'center'}}>
 <TouchableOpacity onPress={props.onPress}  style={{backgroundColor: props.color,
-    paddingHorizontal: 80,
+    paddingHorizontal: 70,
     paddingVertical: 15,
     borderRadius: 30,
     alignItems: "center",

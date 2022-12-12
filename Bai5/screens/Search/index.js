@@ -70,10 +70,10 @@ export default function Search({ route }) {
   const onGoBack = () => {
     navigation.goBack();
   };
-  const image0 = { uri: "https://images.pexels.com/photos/4022090/pexels-photo-4022090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
+  const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
   return (
     < >
-      
+      <ScrollView>
       <ImageBackground source={image0} style={{paddingTop: 20}}resizeMode="repeat">
       <TouchableOpacity
           onPress={onGoBack}
@@ -92,17 +92,22 @@ export default function Search({ route }) {
           <Ionicons name="chevron-back-outline" size={30} color="white" />
         </TouchableOpacity>
       <View style={{marginTop:StatusBar.currentHeight,alignItems: 'center',
-    justifyContent: 'center',marginBottom:5,paddingBottom: 10, marginRight: 18,marginLeft: 68, flexDirection: 'row', }}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 12}} name="search" size={24} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
+    justifyContent: 'center',marginBottom:5,paddingBottom: 10, marginRight: 18,marginLeft: 68, flexDirection: 'row', }}><TextInput  style={{padding: 10, height: 40,width:'90%', borderColor: 'gray', borderWidth: 1,borderRadius: 10, fontSize:20,backgroundColor:'rgba(240,241,242,0.6)',  }} placeholder="Nấu món gì đây ta?"onChangeText={setnamefood}   ></TextInput><FontAwesome style={{marginLeft: 10}} name="search" size={28} color="lightgray" onPress={() => {navigation.navigate("searchfood", { name: namefood });}} /></View>
     
     <>
       <View style={{borderBottomWidth: 2, borderBottomColor: '#0bcc95', marginBottom:5}}></View>
+      <View style={styles.container} >
+      <ImageBackground source={image0} style={styles.su}resizeMode="repeat">
       {data.length == 0 ? (
-        <View>
-          <Text style={{ color: "red", fontSize: 15 }}>
-            Không tìm thấy kết quả cho "{route.params.name}"
+        
+          
+          <Text style={{ marginLeft: 98,backgroundColor: 'black',color: "red", fontSize: 15, paddingLeft: 30, fontWeight: 'bold' , paddingTop: 15, borderWidth: 2, borderRadius: 100, borderColor: 'red', width: 200, paddingRight: 30, alignItems: 'center'}}>
+            Không Tìm Thấy Món  "{route.params.name}"
           </Text>
-        </View>
+          
+        
       ) : (
+        
         <FlatList
         data={data}
         // renderItem={({ item }) => <Item name={item.name} />}
@@ -110,42 +115,30 @@ export default function Search({ route }) {
          initialNumToRender={7}
         keyExtractor={(item, index) => item + index}
         numColumns = {2}
+        
       />
         
       )}
-      
+      </ImageBackground>
+      </View>
     </>
-    </ImageBackground>
+    </ImageBackground></ScrollView>
     </>
     
   );
 }
 
 const styles = StyleSheet.create({
-  main: {
+  container: {
     flex: 1,
+    backgroundColor: 'black',
   },
-  wrap: {
+
+  
+  
+  su: {
     flex: 1,
-  },
-  list: {
-    backgroundColor: "#fff",
-    margin: 5,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#cccc",
-    borderRadius: 5,
-    justifyContent: "center",
-    height: 250,
-  },
-  img: {
-    width: 150,
-    height: 150,
-  },
-  icon: {
-    backgroundColor: "#F0FFF0",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-evenly",
-  },
+    justifyContent: 'flex-start',
+    height: 710
+  }
 });

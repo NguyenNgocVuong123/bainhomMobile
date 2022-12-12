@@ -27,6 +27,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor:'#0bcc95',
     borderRadius: 20,
+    resizeMode: "cover"
   },
   
   slide1: {

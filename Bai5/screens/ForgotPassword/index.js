@@ -71,18 +71,19 @@ export default function ForgotPassword({ navigation }) {
     <View style={styles.container}>
       <ImageBackground source={imagesu} style={styles.su} resizeMode="cover">
     <StatusBar barStyle="light-content"/>
-      <TouchableOpacity
+    <TouchableOpacity
           onPress={onGoBack}
           style={{
             backgroundColor: "#ffffff60",
-            position: "absolute",
-            top: 60,
+            position: 'absolute',
+            top:50,
             left: 15,
-            width: 40,
+            width: 70,
             height: 45,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 100,
+            
           }}
         >
           <Ionicons name="chevron-back-outline" size={30} color="white" />
@@ -98,7 +99,7 @@ export default function ForgotPassword({ navigation }) {
           }}
           >
         <View style={styles.viewtop}>
-        <Text style={styles.titleText}>QUÊN MẬT KHẨU</Text></View>
+        <Text style={styles.titleText}>QUÊN</Text><Text style={styles.titleText2}>MẬT KHẨU</Text></View>
       <View style={styles.viewtop1}>
         <Ips placeholder="Email" onChaneText={setuser}/></View>
       <View style={styles.btn}>
@@ -139,8 +140,18 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: '400',
     color: 'lightgray',
-    paddingHorizontal: 5,
-    marginHorizontal: 20
+    paddingTop:8,
+    paddingLeft: 55,
+    marginTop:50
+  },
+  titleText2:{
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal:8,
+    marginTop:50,
+    paddingTop:8,
+    color: '#0bcc95'
   },
   tText: {
     fontSize: 20,
@@ -148,8 +159,9 @@ const styles = StyleSheet.create({
 
   },
   viewtop: {
-    margin: 30,
-    
+    marginVertical: 30,
+    flexDirection:'row',
+    paddingBottom: 20
   },
   viewtop1: {
     margin: 8,

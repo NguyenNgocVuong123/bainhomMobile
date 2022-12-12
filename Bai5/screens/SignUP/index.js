@@ -75,14 +75,15 @@ export default function SignInScreen({ navigation }) {
           onPress={onGoBack}
           style={{
             backgroundColor: "#ffffff60",
-            position: "absolute",
-            top: 60,
+            position: 'absolute',
+            top:50,
             left: 15,
-            width: 40,
+            width: 70,
             height: 45,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 100,
+            
           }}
         >
           <Ionicons name="chevron-back-outline" size={30} color="white" />
@@ -97,7 +98,8 @@ export default function SignInScreen({ navigation }) {
             
           }}
           >
-      <Text style={styles.titleText}>ĐĂNG KÍ</Text>
+      <View style={styles.viewtop}>
+        <Text style={styles.titleText}>ĐĂNG</Text><Text style={styles.titleText2}>KÍ</Text></View>
       <View style={{marginTop:30}}>
       <View style={styles.viewtop1}>
         <Ips placeholder="Họ và Tên" onChangeText={setname} /></View>
@@ -126,12 +128,23 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: '400',
     color: 'lightgray',
-    paddingHorizontal: 70,
-    marginHorizontal: 53
+    paddingTop:8,
+    paddingLeft: 120,
+    marginTop:60
+  },
+  titleText2:{
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal:8,
+    marginTop:60,
+    paddingTop:8,
+    color: '#0bcc95'
   },
   viewtop: {
-    margin: 30
-
+    marginVertical: 60,
+    flex:1,
+    flexDirection:'row'
   },
   viewtop1: {
       margin: 8,

@@ -23,9 +23,10 @@ export default function HomeTab({route}) {
         headerShown: false,
       }}
     >
-      <Tab.Screen name='Home' component={HomeScreen} />
-      <Tab.Screen name='Categoryfood' component={CategoryX} />
+      
       <Tab.Screen name='Newimga' component={ImagePickerExample} />
+      <Tab.Screen name='Categoryfood' component={CategoryX} />
+      <Tab.Screen name='Home' component={HomeScreen} />
       <Tab.Screen name='favScreen' component={FavScreen} />
       <Tab.Screen name='Acc' component={Accont} />
     </Tab.Navigator>

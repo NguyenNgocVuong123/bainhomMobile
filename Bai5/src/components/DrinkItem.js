@@ -38,21 +38,21 @@ function DrinkItem(props) {
         <Text
           numberOfLines={2}
           style={{
-            color: '#FFFFFF',
-            fontWeight: 'bold',
-            marginVertical: 8,
-            fontSize:18,
+            color: 'lightyellow',
+            fontWeight: '500',
+            marginVertical: 1,
+            fontSize:15,
           }}
         >
           {item?.name}
         </Text>
       </View>
   </ImageBackground>
-  <View style={{ flexDirection: 'row' }}>
-          <Text style={{ color: '#2FDBBC', fontWeight: 'bold', flex: 1 }}>
+  <View style={{ flexDirection: 'row', height: 30, opacity: 0.9 }}>
+          <Text style={{ color: 'black', fontWeight: 'bold', flex: 1, marginTop: 7, paddingLeft:10 }}>
                     {item?.KhuVuc} .. {item?.like}
           </Text>
-          <AntDesign name="like2" size={24} color="black"  onPress={TangLike}/>
+          <AntDesign style={{paddingRight: 7, paddingTop: 3}} name="like2" size={24} color="#0bcc95"  onPress={TangLike}/>
         </View>
       
       
@@ -66,21 +66,23 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: '100%',
     height: 150,
-    borderRadius: 14,
+    borderRadius: 1,
     opacity: 0.85,
     justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0, 0.9)',
+    opacity: 0.7,
     
-    backgroundColor: 'rgba(0,0,0, 0.40)'
   },
   container: {
+    
     width: 150,
     borderRadius: 14,
     overflow: 'hidden',
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     marginLeft: 12,
     flex: 1,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: '#0bcc95',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -89,11 +91,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
 
     elevation: 8,
+    borderColor: '#0e8e6d',
+    borderWidth: 2,
+    opacity:0.8
   },
   infoContainer: {
     
     marginTop:0,
-    paddingHorizontal: 12,
+    paddingHorizontal: 7,
     marginBottom: 1,
     opacity: 0.9,
   },

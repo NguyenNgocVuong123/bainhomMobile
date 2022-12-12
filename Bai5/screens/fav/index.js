@@ -7,6 +7,8 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  ImageBackground,
+  StyleSheet
 } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { useState } from "react";
@@ -66,28 +68,18 @@ export default function FavScreen(navigation) {
   const renderItem = ({ item, index }) => {
     return <FavItem item={item} index={index} navigation={navigation} />;
   };
-
+  const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
   return (
     <View
       style={{
-        paddingTop: StatusBar.currentHeight + 20,
-        backgroundColor: "#fff",
-        paddingHorizontal: 12,
+        
         flex: 1,
       }}
     >
+      <ImageBackground source={image0} style={styles.su} resizeMode='repeat'>
       <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 20,
-            color: "#2FDBBC",
-            flex: 1,
-          }}
-          onPress={testt}
-        >
-          Món Ăn Yêu Thích
-        </Text>
+      <View style={styles.viewtop}>
+        <Text style={styles.titleText}>MÓN</Text><Text style={styles.titleText2}>YÊU THÍCH</Text></View>
         
         <Text
           style={{
@@ -110,7 +102,64 @@ export default function FavScreen(navigation) {
       />
      
 
-      
+     </ImageBackground>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
+
+
+  list: {
+    backgroundColor: "#fff",
+    margin: 5,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#cccc",
+    borderRadius: 5,
+    justifyContent: "center",
+    height: 250,
+    opacity: 0.7
+  },
+  img: {
+    width: 150,
+    height: 150,
+  },
+  icon: {
+    backgroundColor: "#F0FFF0",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+  },
+  su: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    height: "100%"
+  },
+  viewtop: {
+    marginTop: 5,
+    paddingBottom: 15,
+    flexDirection:'row',
+    marginBottom: 10
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingTop:8,
+    paddingLeft: 70,
+    marginTop:40
+  },
+  titleText2:{
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal:8,
+    marginTop:40,
+    paddingTop:8,
+    color: '#0bcc95'
+  },
+});

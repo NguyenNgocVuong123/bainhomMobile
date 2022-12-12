@@ -39,7 +39,7 @@ export default function CategoryX({ route }) {
   const onGoBack = () => {
     navigation.goBack();
   };
-  const image0 = { uri: "https://images.pexels.com/photos/4022090/pexels-photo-4022090.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" };
+  const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
   return (
     <View style={styles.container}>
       <ImageBackground source={image0} style={styles.su} resizeMode='repeat'>

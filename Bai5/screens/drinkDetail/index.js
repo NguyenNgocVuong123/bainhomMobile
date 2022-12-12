@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView,StyleSheet, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialIcons } from '@expo/vector-icons';
@@ -56,26 +56,28 @@ export default function DrinkDetailScreen({ navigation, route }) {
       console.log(error);
     }
   };
-  
+  const image0 = { uri: "https://png.pngtree.com/thumb_back/fw800/background/20190428/pngtree-seamless-pattern-with-motifs-of-fast-foodburgershot-dogs-and-others-image_108304.jpg" };
   return (
     <ScrollView style={{ backgroundColor: "#636363", flex: 1 }}>
-      <View style={{ position: "relative",borderWidth:1 }}>
+      <View style={{ position: "relative",borderBottomWidth: 2, borderBottomColor:'#0bcc95'}}>
         <Image
-          style={{ width: "100%", height: 300 }}
+          style={{ width: "100%", height: 300 , }}
           source={{ uri: item.image }}
         />
         <TouchableOpacity
           onPress={onGoBack}
           style={{
-            backgroundColor: "#ffffff60",
+            backgroundColor: "black",
             position: "absolute",
-            top: 30,
+            top: 40,
             left: 12,
-            width: 40,
+            width: 50,
             height: 40,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 100,
+            opacity: 0.7,
+            
           }}
         >
           <Ionicons name="chevron-back-outline" size={30} color="white" />
@@ -86,20 +88,22 @@ export default function DrinkDetailScreen({ navigation, route }) {
           style={{
             backgroundColor: "#ffffff60",
             position: "absolute",
-            top: 30,
-            left: 350,
+            top: 40,
+            left: 335,
             width: 40,
             height: 40,
             direction:'rtl',
             borderRadius: 100,
+            
           }}
           
         > 
           <MaterialIcons name="favorite-outline" size={40} />
         </TouchableOpacity>
       </View>
-      <View style={{ marginTop: 12 }}>
-        <Text style={{paddingLeft: 20,fontSize: 35,color: 'white', fontWeight: "bold",marginBottom:5,paddingBottom:5,borderBottomWidth: 7, borderBottomColor:'#E3E2C4',}}>{item.name}</Text>
+      <View style={styles.container}>
+      <ImageBackground source={image0} style={styles.su} resizeMode='cover'>
+        <Text style={{paddingLeft: 20,fontSize: 35,color: 'white', fontWeight: "bold",marginBottom:5,paddingBottom:5,borderBottomWidth: 2, borderBottomColor:'#0bcc95', paddingVertical: 10}}>{item.name}</Text>
         <View style={{paddingLeft: 20, paddingTop: 10}}>
           <View>
           <Text
@@ -143,7 +147,7 @@ export default function DrinkDetailScreen({ navigation, route }) {
         >
           {item.ingredient}
         </Text>
-        <View style={{ flexDirection: "row", marginTop: 20 ,borderTopWidth: 7, borderTopColor:'#E3E2C4'}}>
+        <View style={{ flexDirection: "row", marginTop: 20 ,borderTopWidth: 2, borderTopColor:'#0bcc95'}}>
           <View>
             <View
               style={{
@@ -160,9 +164,9 @@ export default function DrinkDetailScreen({ navigation, route }) {
             fontSize: 30,
             fontWeight: "bold",
             paddingLeft: 110,
-            
+            paddingBottom: 10
              }}>Hướng Dẫn</Text>
-            <Text style={{lineHeight:25, color: '#E3E2C4'}}>{item.guide}</Text>
+            <Text style={{lineHeight:25, color: 'lightgray', paddingBottom: 120, fontWeight: '700', }}>{item.guide}</Text>
             </View>
         
             {/* <View
@@ -181,8 +185,24 @@ export default function DrinkDetailScreen({ navigation, route }) {
           </View>
           
         </View>
-        
+        </ImageBackground>
       </View>
     </ScrollView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    
+  },
+
+  su: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    height: "100%",
+    
+    opacity: 0.7
+    
+  }
+});

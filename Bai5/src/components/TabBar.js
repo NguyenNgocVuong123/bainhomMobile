@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 
 export default function MyTabBar({ state, descriptors, navigation }) {
   var imgArr = [
-    require("../../assets/Home.png"),
+    
     
     require("../../assets/fav.png"),
     require("../../assets/Basket.png"),
+    require("../../assets/Home.png"),
+    require("../../assets/fav.png"),
     require("../../assets/profile.png"),
   ];
   return (
@@ -14,9 +16,11 @@ export default function MyTabBar({ state, descriptors, navigation }) {
       style={{
         flexDirection: "row",
         backgroundColor: "#0e8e6d",
-        height: 60,
+        height: 50,
         justifyContent: "center",
         alignItems: "center",
+        borderTopColor: "#0bcc95",
+        borderTopWidth: 2
       }}
     >
       {state.routes.map((route, index) => {

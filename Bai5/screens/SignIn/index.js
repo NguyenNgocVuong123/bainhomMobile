@@ -59,7 +59,7 @@ export default function SignInScreen({ navigation }) {
       await AsyncStorage.setItem('iduser1', ''+res.data.Email);
       await AsyncStorage.setItem('iduser2', ''+res.data.Name);
       await AsyncStorage.setItem('iduser3', ''+res.data.Phone);
-      navigation.navigate("HomeTab",{screen: 'HomeTab'
+      navigation.navigate("HomeTab",{screen: 'Home'
       });
       
     } else {
@@ -96,14 +96,15 @@ const onGoBack = () => {
           onPress={onGoBack}
           style={{
             backgroundColor: "#ffffff60",
-            position: "absolute",
-            top: 60,
+            position: 'absolute',
+            top:50,
             left: 15,
-            width: 40,
+            width: 70,
             height: 45,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 100,
+            
           }}
         >
           <Ionicons name="chevron-back-outline" size={30} color="white" />
@@ -114,12 +115,13 @@ const onGoBack = () => {
           colors={['transparent','black']}
           style={{
             height:550,
-            justifyContent: 'center',
+            justifyContent: 'flex-end',
             
           }}
           >
+            
         <View style={styles.viewtop}>
-        <Text style={styles.titleText}>ĐĂNG NHẬP</Text></View>
+        <Text style={styles.titleText}>ĐĂNG</Text><Text style={styles.titleText2}>NHẬP</Text></View>
       <View style={styles.viewtop1}>
         <Ips placeholder="Tài Khoản" onChangeText={setemail} /></View>
       <View style={styles.viewtop1}>
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     // alignItems: 'center',
     // justifyContent: 'center',
-
+    
   },
   BtnC:{
     backgroundColor: "#81d3e3",
@@ -164,7 +166,18 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: '400',
     color: 'lightgray',
-    paddingHorizontal: 65
+    paddingTop:8,
+    paddingLeft: 100,
+    marginTop:50
+  },
+  titleText2:{
+    fontSize: 40,
+    fontWeight: '400',
+    color: 'lightgray',
+    paddingHorizontal:8,
+    marginTop:50,
+    paddingTop:8,
+    color: '#0bcc95'
   },
   tText: {
     fontSize: 20,
@@ -172,8 +185,9 @@ const styles = StyleSheet.create({
 
   },
   viewtop: {
-    margin: 30,
-    
+    marginTop: 70,
+    paddingBottom: 60,
+    flexDirection:'row'
   },
   viewtop1: {
     margin: 8,
@@ -194,7 +208,7 @@ const styles = StyleSheet.create({
   su: {
     flex: 1,
     justifyContent: 'center',
-    height: 600 ?"83%":"10%"
+    height: 600 ?"83%":"10%",
   }
 });
 
